@@ -5,6 +5,7 @@ import { createVideoPreview } from './create-video-preview';
 import { generateUUID } from './generate-uuid';
 import { getFileNumber } from './get-file-number';
 import { VideoInfo } from './get-video-info';
+import { VideoExtension } from './video-extensions';
 
 export interface CreateFullVideoPreviewOptions {
   videoInfo: VideoInfo;
@@ -45,7 +46,7 @@ export const createFullVideoPreview = async (
     (fragmentInSeconds, index) => {
       const outputFilePath = path.join(
         directory,
-        `${generateUUID()}-${getFileNumber(index)}.mp4`
+        `${generateUUID()}-${getFileNumber(index)}.${VideoExtension.MP4}`
       );
 
       return createVideoPreview(inputFilePath, outputFilePath, {
