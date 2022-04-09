@@ -46,3 +46,6 @@ Thumbs.db
 # Media
 media/*
 !media/.gitkeep
+
+# Database
+db
