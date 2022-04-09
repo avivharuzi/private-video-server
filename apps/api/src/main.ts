@@ -1,5 +1,7 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import * as compression from 'compression';
+import helmet from 'helmet';
 
 import { AppModule } from './app/app.module';
 
@@ -8,6 +10,9 @@ import { AppModule } from './app/app.module';
 
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
+
+  app.use(helmet());
+  app.use(compression());
 
   const { API_PORT } = process.env;
   const port = API_PORT || 3333;
