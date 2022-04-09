@@ -40,4 +40,9 @@ Thumbs.db
 
 .angular
 
+# Environment
 .env
+
+# Media
+media/*
+!media/.gitkeep

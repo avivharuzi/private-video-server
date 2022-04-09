@@ -1,4 +1,4 @@
-# Add files here to ignore them from prettier formatting
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
 /dist
@@ -39,3 +39,10 @@ testem.log
 Thumbs.db
 
 .angular
+
+# Environment
+.env
+
+# Media
+media/*
+!media/.gitkeep
