@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as fastGlob from 'fast-glob';
+import * as mkdirp from 'mkdirp';
 import * as path from 'node:path';
 import { Repository } from 'typeorm';
 
@@ -65,7 +66,7 @@ export class VideosService {
 
     const video = await this.videoRepository.save({
       title: fileStat.name,
-      path: filePath,
+      filePath,
       info: videoInfo,
       thumbnails: [] as string[],
       previews: [] as string[],
@@ -73,16 +74,24 @@ export class VideosService {
     });
 
     const mediaDirectory = this.configService.get('API_MEDIA_DIRECTORY');
+    const thumbnailsDirectory = path.join(
+      mediaDirectory,
+      video.id,
+      'thumbnails'
+    );
+    const previewsDirectory = path.join(mediaDirectory, video.id, 'previews');
+
+    await Promise.all([mkdirp(thumbnailsDirectory), mkdirp(previewsDirectory)]);
 
     const takeScreenshotsPromise = takeScreenshots(filePath, {
       count: 10,
       startPositionPercent: 5,
       endPositionPercent: 95,
-      directory: path.join(mediaDirectory, video.id, 'thumbnails'),
+      directory: thumbnailsDirectory,
     });
 
     const createFullVideoPreviewPromise = createFullVideoPreview(filePath, {
-      directory: path.join(mediaDirectory, video.id, 'previews'),
+      directory: previewsDirectory,
       numberOfParts: 5,
       eachPartTimeInSeconds: 3,
       startPositionPercent: 5,
