@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
+import * as del from 'del';
 import * as fastGlob from 'fast-glob';
 import * as mkdirp from 'mkdirp';
 import * as path from 'node:path';
@@ -73,13 +74,12 @@ export class VideosService {
       collection,
     });
 
-    const mediaDirectory = this.configService.get('API_MEDIA_DIRECTORY');
-    const thumbnailsDirectory = path.join(
-      mediaDirectory,
-      video.id,
-      'thumbnails'
+    const mediaDirectory = path.join(
+      this.configService.get('API_MEDIA_DIRECTORY') || '',
+      video.id
     );
-    const previewsDirectory = path.join(mediaDirectory, video.id, 'previews');
+    const thumbnailsDirectory = path.join(mediaDirectory, 'thumbnails');
+    const previewsDirectory = path.join(mediaDirectory, 'previews');
 
     await Promise.all([mkdirp(thumbnailsDirectory), mkdirp(previewsDirectory)]);
 
@@ -104,12 +104,25 @@ export class VideosService {
       createFullVideoPreviewPromise,
     ]);
 
+    video.mediaDirectory = mediaDirectory;
     video.defaultThumbnail = thumbnails[0] || '';
     video.thumbnails = thumbnails;
     video.defaultPreview = fullVideoPreviewOutput.videoPreviewFilePath;
     video.previews = fullVideoPreviewOutput.filePaths;
 
     await this.videoRepository.save(video);
+
+    return video;
+  }
+
+  async deleteOne(id: string): Promise<VideoEntity> {
+    const video = await this.findOne(id);
+
+    const mediaDirectory = video.mediaDirectory;
+
+    await del(mediaDirectory);
+
+    await this.videoRepository.delete(id);
 
     return video;
   }

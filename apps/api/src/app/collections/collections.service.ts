@@ -50,4 +50,18 @@ export class CollectionsService {
 
     return collection;
   }
+
+  async delete(id: string): Promise<CollectionEntity> {
+    const collection = await this.findOne(id);
+
+    const deletePromises = collection.videos.map((video) =>
+      this.videosService.deleteOne(video.id)
+    );
+
+    await Promise.all(deletePromises);
+
+    await this.collectionRepository.delete(id);
+
+    return collection;
+  }
 }
