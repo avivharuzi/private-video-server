@@ -1,6 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { CollectionsModule } from './collections';
+import { VideosModule } from './videos';
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -8,9 +11,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       database: 'db',
       entities: [],
       synchronize: true,
+      autoLoadEntities: true,
     }),
+    CollectionsModule,
+    VideosModule,
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}

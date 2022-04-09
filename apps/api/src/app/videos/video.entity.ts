@@ -12,7 +12,7 @@ export class VideoEntity extends BaseEntity {
   @Column()
   path!: string;
 
-  @Column()
+  @Column('simple-json')
   info!: VideoInfo;
 
   @Column({
