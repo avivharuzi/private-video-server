@@ -9,7 +9,7 @@ export class CollectionEntity extends BaseEntity {
   name!: string;
 
   @Column('simple-array')
-  paths!: string[];
+  directories!: string[];
 
   @OneToMany(() => VideoEntity, (video) => video.collection)
   videos!: VideoEntity[];

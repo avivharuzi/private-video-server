@@ -10,7 +10,7 @@ export class VideoEntity extends BaseEntity {
   title!: string;
 
   @Column()
-  path!: string;
+  filePath!: string;
 
   @Column('simple-json')
   info!: VideoInfo;
@@ -18,7 +18,7 @@ export class VideoEntity extends BaseEntity {
   @Column({
     nullable: true,
   })
-  thumbnail!: string;
+  defaultThumbnail!: string;
 
   @Column('simple-array')
   thumbnails!: string[];
@@ -26,7 +26,7 @@ export class VideoEntity extends BaseEntity {
   @Column({
     nullable: true,
   })
-  preview!: string;
+  defaultPreview!: string;
 
   @Column('simple-array')
   previews!: string[];

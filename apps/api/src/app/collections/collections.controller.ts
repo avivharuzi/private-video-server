@@ -1,6 +1,7 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 
 import { CollectionsService } from './collections.service';
+import { CreateCollectionDto } from './dto';
 
 @Controller('collections')
 export class CollectionsController {
@@ -14,5 +15,10 @@ export class CollectionsController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.collectionsService.findOne(id);
+  }
+
+  @Post()
+  create(@Body() createCollectionDto: CreateCollectionDto) {
+    return this.collectionsService.create(createCollectionDto);
   }
 }
