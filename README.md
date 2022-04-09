@@ -1,2 +1,3 @@
-# private-video-server
-A very simple private video server
+# Private Video Server
+
+A very simple private video server.
