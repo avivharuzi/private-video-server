@@ -1,9 +1,11 @@
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as compression from 'compression';
 import helmet from 'helmet';
 
 import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
 
 (async () => {
   const app = await NestFactory.create(AppModule);
@@ -18,6 +20,15 @@ import { AppModule } from './app/app.module';
 
   app.use(helmet());
   app.use(compression());
+
+  if (!environment.production) {
+    const documentBuilder = new DocumentBuilder()
+      .setTitle('Private Video Server API')
+      .setVersion('1.0')
+      .build();
+    const document = SwaggerModule.createDocument(app, documentBuilder);
+    SwaggerModule.setup('api', app, document);
+  }
 
   const { API_PORT } = process.env;
   const port = API_PORT || 3333;
