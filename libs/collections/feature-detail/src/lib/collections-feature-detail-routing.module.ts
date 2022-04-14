@@ -14,7 +14,7 @@ const routes: Routes = [
         redirectTo: '',
       },
       {
-        path: 'videos/:id',
+        path: 'videos/:videoId',
         loadChildren: () =>
           import('@private-video-server/collections/feature-video-detail').then(
             ({ CollectionsFeatureVideoDetailModule }) =>

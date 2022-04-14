@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/shared/ui/modal",
+  "sourceRoot": "libs/shared/ui/modal/src",
+  "prefix": "shared",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/ui/modal"],
+      "options": {
+        "jestConfig": "libs/shared/ui/modal/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/modal/src/**/*.ts",
+          "libs/shared/ui/modal/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:shared", "type:ui"]
+}
