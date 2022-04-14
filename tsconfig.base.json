@@ -38,6 +38,9 @@
       ],
       "@private-video-server/collections/shell": [
         "libs/collections/shell/src/index.ts"
+      ],
+      "@private-video-server/shared/ui/video-player": [
+        "libs/shared/ui/video-player/src/index.ts"
       ]
     }
   },
