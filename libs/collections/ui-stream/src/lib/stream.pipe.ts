@@ -18,7 +18,7 @@ export class StreamPipe implements PipeTransform {
     private readonly collectionsConfig: CollectionsConfig
   ) {}
 
-  transform(value: string, type: StreamType): unknown {
+  transform(value: string, type: StreamType): string {
     const valueEncoded = type !== 'video' ? encodeURIComponent(value) : value;
 
     return `${this.baseAPIUrl}/${type}/${valueEncoded}`;

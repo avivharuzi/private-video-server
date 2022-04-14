@@ -12,7 +12,7 @@ import { Video } from './video';
 @Injectable({
   providedIn: 'root',
 })
-export class VideoService {
+export class VideosService {
   private readonly baseAPIUrl = `${this.collectionsConfig.baseAPIUrl}/videos`;
 
   constructor(

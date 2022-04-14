@@ -1,6 +1,7 @@
 import { VideoInfo } from './video-info';
 
 export interface Video {
+  id: string;
   title: string;
   filePath: string;
   info: VideoInfo;

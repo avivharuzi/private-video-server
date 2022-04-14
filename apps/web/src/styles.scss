@@ -1,1 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~plyr/dist/plyr.css';
+
+:root {
+  --plyr-color-main: #1ac266;
+}
