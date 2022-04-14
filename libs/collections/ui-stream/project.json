@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/collections/ui-stream",
+  "sourceRoot": "libs/collections/ui-stream/src",
+  "prefix": "collections",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/collections/ui-stream"],
+      "options": {
+        "jestConfig": "libs/collections/ui-stream/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/collections/ui-stream/src/**/*.ts",
+          "libs/collections/ui-stream/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:collections", "type:ui"]
+}
