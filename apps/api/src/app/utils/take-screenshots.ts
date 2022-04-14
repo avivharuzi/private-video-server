@@ -1,5 +1,6 @@
-import * as ffmpeg from 'fluent-ffmpeg';
 import * as path from 'node:path';
+
+import * as ffmpeg from 'fluent-ffmpeg';
 
 import { generateUUID } from './generate-uuid';
 import { getFileNumber } from './get-file-number';

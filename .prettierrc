@@ -1,6 +1,7 @@
 {
   "singleQuote": true,
   "importOrder": [
+    "^node:(.*)$",
     "^zone.js(.*)$",
     "^@angular/platform-server(.*)$",
     "^@angular/(.*)$",
