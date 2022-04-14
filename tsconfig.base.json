@@ -26,7 +26,20 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "forceConsistentCasingInFileNames": true,
-    "paths": {}
+    "paths": {
+      "@private-video-server/collections/feature-detail": [
+        "libs/collections/feature-detail/src/index.ts"
+      ],
+      "@private-video-server/collections/feature-list": [
+        "libs/collections/feature-list/src/index.ts"
+      ],
+      "@private-video-server/collections/feature-video-detail": [
+        "libs/collections/feature-video-detail/src/index.ts"
+      ],
+      "@private-video-server/collections/shell": [
+        "libs/collections/shell/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

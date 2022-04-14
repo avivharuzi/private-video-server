@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/collections/feature-list",
+  "sourceRoot": "libs/collections/feature-list/src",
+  "prefix": "collections",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/collections/feature-list"],
+      "options": {
+        "jestConfig": "libs/collections/feature-list/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/collections/feature-list/src/**/*.ts",
+          "libs/collections/feature-list/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:collections", "type:feature"]
+}
