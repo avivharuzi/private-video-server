@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
+    "collections-data-access": "libs/collections/data-access",
     "collections-feature-detail": "libs/collections/feature-detail",
     "collections-feature-list": "libs/collections/feature-list",
     "collections-feature-video-detail": "libs/collections/feature-video-detail",

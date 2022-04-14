@@ -27,6 +27,9 @@
     "noUnusedParameters": true,
     "forceConsistentCasingInFileNames": true,
     "paths": {
+      "@private-video-server/collections/data-access": [
+        "libs/collections/data-access/src/index.ts"
+      ],
       "@private-video-server/collections/feature-detail": [
         "libs/collections/feature-detail/src/index.ts"
       ],
