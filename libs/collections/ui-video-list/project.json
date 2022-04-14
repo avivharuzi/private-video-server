@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/collections/ui-video-list",
+  "sourceRoot": "libs/collections/ui-video-list/src",
+  "prefix": "collections",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/collections/ui-video-list"],
+      "options": {
+        "jestConfig": "libs/collections/ui-video-list/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/collections/ui-video-list/src/**/*.ts",
+          "libs/collections/ui-video-list/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:collections", "type:ui"]
+}

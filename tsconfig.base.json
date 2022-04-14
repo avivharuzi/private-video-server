@@ -45,6 +45,9 @@
       "@private-video-server/collections/ui-stream": [
         "libs/collections/ui-stream/src/index.ts"
       ],
+      "@private-video-server/collections/ui-video-list": [
+        "libs/collections/ui-video-list/src/index.ts"
+      ],
       "@private-video-server/shared/ui/video-player": [
         "libs/shared/ui/video-player/src/index.ts"
       ]

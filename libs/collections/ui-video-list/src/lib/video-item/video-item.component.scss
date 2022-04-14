@@ -1,0 +1,60 @@
+.video-item {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+
+  .img-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+
+    .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: flex;
+      width: 50px;
+      height: 50px;
+      transform: translate(-50%, -50%);
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out;
+      fill: rgba(255, 255, 255, 0.75);
+
+      &.close {
+        opacity: 0;
+      }
+
+      svg {
+        display: flex;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    img {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-preview {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  h3 {
+    margin-top: 10px;
+  }
+}

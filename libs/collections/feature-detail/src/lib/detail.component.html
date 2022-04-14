@@ -1,3 +1,5 @@
-<pre>{{ collection$ | async | json }}</pre>
+<ng-container *ngIf="collection$ | async as collection">
+  <collections-video-list [videos]="collection.videos"></collections-video-list>
+</ng-container>
 
 <router-outlet></router-outlet>
