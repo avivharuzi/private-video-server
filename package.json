@@ -11,7 +11,6 @@
     "build": "nx build",
     "build:ssr": "nx server",
     "prerender": "nx prerender",
-    "e2e": "nx e2e web-e2e",
     "test": "nx test",
     "lint": "nx lint",
     "affected:build": "nx affected:build",
