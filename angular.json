@@ -9,6 +9,7 @@
     "collections-shell": "libs/collections/shell",
     "collections-ui-stream": "libs/collections/ui-stream",
     "collections-ui-video-list": "libs/collections/ui-video-list",
+    "shared-ui-icon": "libs/shared/ui/icon",
     "shared-ui-modal": "libs/shared/ui/modal",
     "shared-ui-video-player": "libs/shared/ui/video-player",
     "web": "apps/web"
