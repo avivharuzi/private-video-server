@@ -1,0 +1,10 @@
+@mixin load-font($name, $weights) {
+  @each $weight in $weights {
+    @font-face {
+      font-weight: $weight;
+      font-family: $name;
+      font-style: normal;
+      src: url('/assets/fonts/#{$name}/#{$name}-#{$weight}.ttf') format('ttf');
+    }
+  }
+}
