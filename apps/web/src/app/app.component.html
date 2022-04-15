@@ -1,1 +1,18 @@
-<router-outlet></router-outlet>
+<div class="header">
+  <a class="title" routerLink="/">
+    <shared-icon name="video-camera"></shared-icon>
+    <h1>Private Video Server</h1>
+  </a>
+  <div class="menu">
+    <div class="new-collection">
+      <button><shared-icon name="add"></shared-icon>New Collection</button>
+    </div>
+    <div class="user">
+      <shared-icon name="person"></shared-icon>
+    </div>
+  </div>
+</div>
+
+<div class="body">
+  <router-outlet></router-outlet>
+</div>

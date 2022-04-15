@@ -1,1 +1,13 @@
-<pre>{{ collections$ | async | json }}</pre>
+<div *ngIf="collections$ | async as collections" class="list">
+  <a
+    *ngFor="let collection of collections"
+    class="item"
+    [routerLink]="collection.id"
+  >
+    <h2>{{ collection.name }}</h2>
+
+    <div class="more">
+      <shared-icon name="more-vertical"></shared-icon>
+    </div>
+  </a>
+</div>

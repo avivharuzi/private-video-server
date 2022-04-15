@@ -30,7 +30,7 @@ export class ModalComponent {
     }
   }
 
-  @HostListener('document:keydown.escape') onKeydownHandler() {
+  @HostListener('document:keydown.escape') onKeydownHandler(): void {
     this.closed.emit();
   }
 }
