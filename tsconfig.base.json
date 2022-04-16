@@ -51,6 +51,9 @@
       "@private-video-server/collections/ui-video-list": [
         "libs/collections/ui-video-list/src/index.ts"
       ],
+      "@private-video-server/shared/data-access-browse": [
+        "libs/shared/data-access-browse/src/index.ts"
+      ],
       "@private-video-server/shared/ui/button": [
         "libs/shared/ui/button/src/index.ts"
       ],

@@ -3,7 +3,7 @@ import * as path from 'node:path';
 
 import { Injectable } from '@nestjs/common';
 
-import { Browse } from './browse';
+import { Browse } from '@private-video-server/shared/data-access-browse';
 
 @Injectable()
 export class BrowseService {
