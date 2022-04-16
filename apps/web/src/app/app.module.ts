@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { CollectionsDataAccessModule } from '@private-video-server/collections/data-access';
+import { SharedDataAccessBrowseModule } from '@private-video-server/shared/data-access-browse';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,6 +24,9 @@ import { NavbarModule } from './navbar/navbar.module';
       registrationStrategy: 'registerWhenStable:30000',
     }),
     CollectionsDataAccessModule.forRoot({
+      baseAPIUrl: environment.baseAPIUrl,
+    }),
+    SharedDataAccessBrowseModule.forRoot({
       baseAPIUrl: environment.baseAPIUrl,
     }),
     NavbarModule,
