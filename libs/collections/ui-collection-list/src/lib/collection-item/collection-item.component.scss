@@ -1,0 +1,40 @@
+@use 'libs/shared/ui/scss';
+
+:host {
+  display: flex;
+}
+
+.collection-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: var(--space-64);
+  text-transform: uppercase;
+  background-color: var(--color-primary);
+  border-radius: var(--border-radius-rectangle);
+  box-shadow: var(--box-shadow-lg);
+  transition: background-color var(--transitions-speed-fast);
+
+  &:hover {
+    background-color: var(--color-primary-hover);
+  }
+
+  h2 {
+    color: var(--color-white);
+    font-weight: bold;
+    font-size: var(--font-size-h4);
+    text-align: center;
+
+    @include scss.mixins-line-clamp(2);
+
+    @include scss.mixins-media-from-md {
+      font-size: var(--font-size-h3);
+    }
+
+    @include scss.mixins-media-from-xl {
+      font-size: var(--font-size-h2);
+    }
+  }
+}

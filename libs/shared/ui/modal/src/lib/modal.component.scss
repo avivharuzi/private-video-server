@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999;
+  z-index: var(--z-index-modal);
   width: 100%;
   height: 100%;
   overflow: auto;
@@ -39,8 +39,8 @@
       }
 
       shared-icon {
-        width: var(--size-icon-md);
-        height: var(--size-icon-md);
+        width: var(--icon-size-md);
+        height: var(--icon-size-md);
         color: var(--color-white);
       }
     }

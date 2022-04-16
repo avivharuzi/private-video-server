@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { SharedUiIconModule } from '@private-video-server/shared/ui/icon';
+import { CollectionsUiCollectionListModule } from '@private-video-server/collections/ui-collection-list';
 
 import { CollectionsFeatureListRoutingModule } from './collections-feature-list-routing.module';
 import { ListComponent } from './list.component';
@@ -10,7 +10,7 @@ import { ListComponent } from './list.component';
   imports: [
     CollectionsFeatureListRoutingModule,
     CommonModule,
-    SharedUiIconModule,
+    CollectionsUiCollectionListModule,
   ],
   declarations: [ListComponent],
 })

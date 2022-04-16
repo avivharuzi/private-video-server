@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/collections/ui-collection-list",
+  "sourceRoot": "libs/collections/ui-collection-list/src",
+  "prefix": "collections",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/collections/ui-collection-list"],
+      "options": {
+        "jestConfig": "libs/collections/ui-collection-list/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/collections/ui-collection-list/src/**/*.ts",
+          "libs/collections/ui-collection-list/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:collections", "type:ui"]
+}

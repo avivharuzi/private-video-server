@@ -11,5 +11,5 @@ import { Video } from '@private-video-server/collections/data-access';
 export class VideoItemComponent {
   @Input() video!: Video;
 
-  isVideoPreview = false;
+  hasVideoPreview = false;
 }

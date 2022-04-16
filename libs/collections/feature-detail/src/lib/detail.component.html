@@ -1,4 +1,7 @@
 <ng-container *ngIf="collection$ | async as collection">
+  <header>
+    <h1>{{ collection.name }}</h1>
+  </header>
   <collections-video-list [videos]="collection.videos"></collections-video-list>
 </ng-container>
 

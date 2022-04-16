@@ -1,15 +1,18 @@
 <div class="video-item">
   <div
-    class="img-container"
+    class="video-item__img-container"
     [routerLink]="['videos', video.id]"
-    (mouseenter)="isVideoPreview = true"
-    (mouseleave)="isVideoPreview = false"
+    (mouseenter)="hasVideoPreview = true"
+    (mouseleave)="hasVideoPreview = false"
   >
     <img
       [alt]="video.title"
       [src]="video.defaultThumbnail | stream: 'thumbnails'"
     />
-    <div *ngIf="isVideoPreview" class="video-preview play">
+    <div
+      *ngIf="hasVideoPreview"
+      class="video-item__img-container__video-preview"
+    >
       <video autoplay loop playsinline>
         <source
           type="video/mp4"
@@ -18,10 +21,12 @@
         Your browser does not support the video tag.
       </video>
     </div>
-    <div class="play-icon" [class.close]="isVideoPreview">
+    <div
+      class="video-item__img-container__play-icon"
+      [class.video-item__img-container__play-icon--close]="hasVideoPreview"
+    >
       <shared-icon name="play"></shared-icon>
     </div>
   </div>
-
   <h3>{{ video.title }}</h3>
 </div>

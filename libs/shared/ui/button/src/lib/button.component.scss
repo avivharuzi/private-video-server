@@ -1,0 +1,56 @@
+@use 'libs/shared/ui/scss';
+
+:host {
+  display: inline-flex;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transitions-speed-fast);
+
+  shared-icon {
+    margin-right: var(--space-4);
+  }
+}
+
+.button--color-primary.button--variant-contained {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+
+  &:hover {
+    background-color: var(--color-primary-hover);
+  }
+}
+
+.button--color-primary.button--variant-text {
+  color: var(--color-primary);
+  background-color: transparent;
+
+  &:hover {
+    color: var(--color-primary-hover);
+  }
+}
+
+.button--shape-circle {
+  border-radius: var(--border-radius-circle);
+
+  shared-icon {
+    margin: 0;
+  }
+
+  &.button--size-md {
+    padding: var(--space-8);
+    font-size: var(--font-size-h6);
+  }
+}
+
+.button--shape-rectangle {
+  border-radius: var(--border-radius-rectangle);
+
+  &.button--size-md {
+    padding: var(--space-8) var(--space-16);
+    font-size: var(--font-size-h6);
+  }
+}

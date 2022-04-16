@@ -1,0 +1,12 @@
+<div
+  class="button"
+  [ngClass]="[
+    'button--variant-' + variant,
+    'button--shape-' + shape,
+    'button--color-' + color,
+    'button--size-' + size
+  ]"
+>
+  <shared-icon *ngIf="iconName" [name]="iconName"></shared-icon>
+  <ng-content></ng-content>
+</div>

@@ -4,11 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { CollectionsDataAccessModule } from '@private-video-server/collections/data-access';
-import { SharedUiIconModule } from '@private-video-server/shared/ui/icon';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NavbarModule } from './navbar/navbar.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +25,7 @@ import { AppComponent } from './app.component';
     CollectionsDataAccessModule.forRoot({
       baseAPIUrl: environment.baseAPIUrl,
     }),
-    SharedUiIconModule,
+    NavbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
