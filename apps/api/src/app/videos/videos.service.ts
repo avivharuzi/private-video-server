@@ -121,7 +121,9 @@ export class VideosService {
 
     const mediaDirectory = video.mediaDirectory;
 
-    await del(mediaDirectory);
+    if (mediaDirectory) {
+      await del(mediaDirectory);
+    }
 
     await this.videoRepository.delete(id);
 

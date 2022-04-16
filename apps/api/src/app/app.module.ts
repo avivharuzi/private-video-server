@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { BrowseModule } from './browse';
 import { CollectionsModule } from './collections';
 import { StreamModule } from './stream';
 import { VideosModule } from './videos';
@@ -18,6 +19,7 @@ import { VideosModule } from './videos';
       synchronize: true,
       autoLoadEntities: true,
     }),
+    BrowseModule,
     CollectionsModule,
     VideosModule,
     StreamModule,
