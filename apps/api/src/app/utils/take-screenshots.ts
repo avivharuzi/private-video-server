@@ -59,14 +59,11 @@ export const takeScreenshot = (
       .on('error', (err) => {
         reject(err);
       })
-      .screenshots(
-        {
-          count: 1,
-          timemarks: [timestamp],
-          folder: directory,
-          filename: outputFileName,
-        },
-        path.join(path.dirname(file), 'screenshots')
-      );
+      .screenshots({
+        count: 1,
+        timemarks: [timestamp],
+        folder: directory,
+        filename: outputFileName,
+      });
   });
 };
