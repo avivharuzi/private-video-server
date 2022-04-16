@@ -1,10 +1,13 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
   EventEmitter,
   HostListener,
+  OnDestroy,
   Output,
+  Renderer2,
   ViewChild,
 } from '@angular/core';
 
@@ -14,10 +17,20 @@ import {
   styleUrls: ['./modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ModalComponent {
+export class ModalComponent implements AfterViewInit, OnDestroy {
   @Output() closed = new EventEmitter<void>();
 
   @ViewChild('contentElement') contentElementRef?: ElementRef;
+
+  constructor(private renderer: Renderer2) {}
+
+  ngAfterViewInit(): void {
+    this.renderer.setStyle(document.body, 'overflow', 'hidden');
+  }
+
+  ngOnDestroy(): void {
+    this.renderer.setStyle(document.body, 'overflow', 'auto');
+  }
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event) {

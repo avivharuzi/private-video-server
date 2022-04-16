@@ -1,9 +1,11 @@
 <ng-container *ngIf="video$ | async as video">
   <shared-modal (closed)="onModalClosed()">
     <shared-video-player
+      #sharedVideoPlayerElement
       [autoplay]="true"
       [poster]="video.defaultThumbnail | stream: 'thumbnails'"
       [src]="video.id | stream: 'video'"
+      (click)="onSharedVideoPlayerClick($event)"
     ></shared-video-player>
   </shared-modal>
 </ng-container>
