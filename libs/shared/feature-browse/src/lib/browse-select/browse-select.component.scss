@@ -1,0 +1,30 @@
+:host {
+  display: flex;
+}
+
+.browse-select {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--space-8) var(--space-16);
+  background-color: var(--color-gray);
+  border-left: var(--border-size-lg) solid transparent;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-gray-hover);
+  }
+
+  &--is-active {
+    border-left: var(--border-size-lg) solid var(--color-primary);
+  }
+
+  &--is-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  shared-icon {
+    margin-right: var(--space-8);
+  }
+}

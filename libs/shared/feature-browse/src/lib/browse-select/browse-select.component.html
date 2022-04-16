@@ -1,0 +1,8 @@
+<div
+  class="browse-select"
+  [class.browse-select--is-active]="isActive"
+  [class.browse-select--is-disabled]="type === 'file'"
+>
+  <shared-icon [name]="type"></shared-icon>
+  <span><ng-content></ng-content></span>
+</div>

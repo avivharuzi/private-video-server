@@ -54,6 +54,9 @@
       "@private-video-server/shared/data-access-browse": [
         "libs/shared/data-access-browse/src/index.ts"
       ],
+      "@private-video-server/shared/feature-browse": [
+        "libs/shared/feature-browse/src/index.ts"
+      ],
       "@private-video-server/shared/ui/button": [
         "libs/shared/ui/button/src/index.ts"
       ],

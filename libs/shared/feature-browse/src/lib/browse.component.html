@@ -1,0 +1,45 @@
+<div *ngIf="browseData$ | async as browseData" class="browse">
+  <ng-container *ngIf="browseData.root">
+    <div class="browse__input">
+      <ng-container>
+        <input type="text" [(ngModel)]="path" />
+      </ng-container>
+    </div>
+    <div class="browse__selectors">
+      <div class="browse__root">
+        <shared-browse-select
+          *ngFor="let directory of browseData.root.directories"
+          type="directory"
+          [isActive]="browseData.currentRootDirectory === directory"
+          (click)="updateCurrent(directory)"
+          >{{ directory.name }}</shared-browse-select
+        >
+      </div>
+      <div class="browse__current">
+        <ng-container *ngIf="browseData.current">
+          <shared-browse-select
+            *ngIf="!browseData.isCurrentDirectoryBelongToRoot"
+            type="back"
+            (click)="back()"
+            >.. [Back]
+          </shared-browse-select>
+          <shared-browse-select
+            *ngFor="let directory of browseData.current.directories"
+            type="directory"
+            (click)="updateCurrent(directory)"
+            >{{ directory.name }}</shared-browse-select
+          >
+          <shared-browse-select
+            *ngFor="let file of browseData.current.files"
+            type="file"
+            >{{ file.name }}</shared-browse-select
+          >
+        </ng-container>
+      </div>
+    </div>
+    <div class="browse__actions">
+      <button sharedButton variant="text" (click)="onCancel()">Cancel</button>
+      <button sharedButton (click)="onAdd()">Add</button>
+    </div>
+  </ng-container>
+</div>

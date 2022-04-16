@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/shared/feature-browse",
+  "sourceRoot": "libs/shared/feature-browse/src",
+  "prefix": "shared",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/feature-browse"],
+      "options": {
+        "jestConfig": "libs/shared/feature-browse/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/feature-browse/src/**/*.ts",
+          "libs/shared/feature-browse/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:shared", "type:feature"]
+}

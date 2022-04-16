@@ -14,6 +14,8 @@
   --color-text-background: #f9fafb;
   --color-primary: #f43f5e;
   --color-primary-hover: #be123c;
+  --color-gray: #f3f4f6;
+  --color-gray-hover: #e5e7eb;
 
   /** Borders **/
   --border-radius-rectangle: 4px;
@@ -95,7 +97,8 @@ pre {
 }
 
 a,
-button {
+button,
+input {
   all: unset;
 }
 
