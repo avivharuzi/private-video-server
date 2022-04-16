@@ -15,6 +15,7 @@ import {
   getVideoInfo,
   takeScreenshots,
 } from '../utils';
+import { saveVideoCoverImage } from '../utils/save-video-cover-image';
 import { VIDEO_EXTENSIONS } from '../utils/video-extensions';
 import { VideoEntity } from './video.entity';
 
@@ -84,6 +85,11 @@ export class VideosService {
 
     await Promise.all([mkdirp(thumbnailsDirectory), mkdirp(previewsDirectory)]);
 
+    const saveVideoCoverImagePromise = saveVideoCoverImage(
+      filePath,
+      thumbnailsDirectory
+    );
+
     const takeScreenshotsPromise = takeScreenshots(filePath, {
       count: 10,
       startPositionPercent: 5,
@@ -100,12 +106,17 @@ export class VideosService {
       videoInfo,
     });
 
-    const [thumbnails, fullVideoPreviewOutput] = await Promise.all([
-      takeScreenshotsPromise,
-      createFullVideoPreviewPromise,
-    ]);
+    const [coverThumbnail, thumbnails, fullVideoPreviewOutput] =
+      await Promise.all([
+        saveVideoCoverImagePromise,
+        takeScreenshotsPromise,
+        createFullVideoPreviewPromise,
+      ]);
 
     video.mediaDirectory = mediaDirectory;
+    if (coverThumbnail !== null) {
+      video.coverThumbnail = coverThumbnail;
+    }
     video.defaultThumbnail = thumbnails[0] || '';
     video.thumbnails = thumbnails;
     video.defaultPreview = fullVideoPreviewOutput.videoPreviewFilePath;

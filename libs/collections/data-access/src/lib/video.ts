@@ -6,6 +6,7 @@ export interface Video {
   filePath: string;
   info: VideoInfo;
   mediaDirectory: string;
+  coverThumbnail: string | null;
   defaultThumbnail: string;
   thumbnails: string[];
   defaultPreview: string;

@@ -7,7 +7,9 @@
   >
     <img
       [alt]="video.title"
-      [src]="video.defaultThumbnail | stream: 'thumbnails'"
+      [src]="
+        video.coverThumbnail || video.defaultThumbnail | stream: 'thumbnails'
+      "
     />
     <div
       *ngIf="hasVideoPreview"

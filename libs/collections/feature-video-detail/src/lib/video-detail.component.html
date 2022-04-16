@@ -3,7 +3,9 @@
     <shared-video-player
       #sharedVideoPlayerElement
       [autoplay]="true"
-      [poster]="video.defaultThumbnail | stream: 'thumbnails'"
+      [poster]="
+        video.coverThumbnail || video.defaultThumbnail | stream: 'thumbnails'
+      "
       [src]="video.id | stream: 'video'"
       (click)="onSharedVideoPlayerClick($event)"
     ></shared-video-player>

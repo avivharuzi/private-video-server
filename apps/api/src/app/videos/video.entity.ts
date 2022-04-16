@@ -23,6 +23,11 @@ export class VideoEntity extends BaseEntity {
   @Column({
     nullable: true,
   })
+  coverThumbnail!: string;
+
+  @Column({
+    nullable: true,
+  })
   defaultThumbnail!: string;
 
   @Column('simple-array')
