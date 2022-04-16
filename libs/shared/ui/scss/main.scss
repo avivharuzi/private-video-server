@@ -39,6 +39,7 @@
   --font-weight-bold: 700;
 
   /** Spaces **/
+  --space-0: 0;
   --space-4: 4px;
   --space-8: 8px;
   --space-16: 16px;
@@ -55,6 +56,12 @@
   /** Transitions **/
   --transitions-speed-fast: 0.2s ease-in-out;
   --transitions-speed-slow: 0.5s ease-in-out;
+
+  /** Z Indexes **/
+  --z-index-body: 0;
+  --z-index-navbar: 10;
+  --z-index-dropdown: 20;
+  --z-index-modal: 30;
 
   /** Plyr **/
   --plyr-color-main: var(--color-primary);
