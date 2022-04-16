@@ -8,3 +8,40 @@
     }
   }
 }
+
+@mixin line-clamp($max-lines: 1) {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $max-lines;
+}
+
+@mixin media-from-sm {
+  @media (min-width: 640px) {
+    @content;
+  }
+}
+
+@mixin media-from-md {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin media-from-lg {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin media-from-xl {
+  @media (min-width: 1280px) {
+    @content;
+  }
+}
+
+@mixin media-from-2xl {
+  @media (min-width: 1536px) {
+    @content;
+  }
+}
