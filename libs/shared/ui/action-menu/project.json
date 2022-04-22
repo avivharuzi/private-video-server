@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/shared/ui/action-menu",
+  "sourceRoot": "libs/shared/ui/action-menu/src",
+  "prefix": "shared",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/ui/action-menu"],
+      "options": {
+        "jestConfig": "libs/shared/ui/action-menu/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/action-menu/src/**/*.ts",
+          "libs/shared/ui/action-menu/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:shared", "type:ui"]
+}

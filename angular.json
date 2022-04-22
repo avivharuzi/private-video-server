@@ -13,6 +13,7 @@
     "collections-ui-video-list": "libs/collections/ui-video-list",
     "shared-data-access-browse": "libs/shared/data-access-browse",
     "shared-feature-browse": "libs/shared/feature-browse",
+    "shared-ui-action-menu": "libs/shared/ui/action-menu",
     "shared-ui-button": "libs/shared/ui/button",
     "shared-ui-icon": "libs/shared/ui/icon",
     "shared-ui-input": "libs/shared/ui/input",

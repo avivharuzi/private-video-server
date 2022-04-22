@@ -1,3 +1,27 @@
-<a class="collection-item" [routerLink]="collection.id">
-  <h2>{{ collection.name }}</h2>
-</a>
+<div class="collection-item">
+  <a class="collection-item__link" [routerLink]="collection.id">
+    <h2>{{ collection.name }}</h2>
+  </a>
+
+  <div class="collection-item__actions">
+    <shared-action-menu #sharedActionMenu>
+      <button
+        iconName="more-vertical"
+        shape="circle"
+        sharedActionMenuOrigin
+        sharedButton
+        variant="text"
+      ></button>
+
+      <div sharedActionMenuDropdown>
+        <shared-action-menu-list>
+          <shared-action-menu-item
+            iconName="delete"
+            (click)="sharedActionMenu.close()"
+            >Delete</shared-action-menu-item
+          >
+        </shared-action-menu-list>
+      </div>
+    </shared-action-menu>
+  </div>
+</div>

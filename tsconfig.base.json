@@ -60,6 +60,9 @@
       "@private-video-server/shared/feature-browse": [
         "libs/shared/feature-browse/src/index.ts"
       ],
+      "@private-video-server/shared/ui/action-menu": [
+        "libs/shared/ui/action-menu/src/index.ts"
+      ],
       "@private-video-server/shared/ui/button": [
         "libs/shared/ui/button/src/index.ts"
       ],
