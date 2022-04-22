@@ -1,5 +1,8 @@
+import * as path from 'node:path';
+
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { BrowseModule } from './browse';
@@ -18,6 +21,10 @@ import { VideosModule } from './videos';
       entities: [],
       synchronize: true,
       autoLoadEntities: true,
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: path.join(__dirname, '..', 'web', 'browser'),
+      exclude: ['/api*'],
     }),
     BrowseModule,
     CollectionsModule,

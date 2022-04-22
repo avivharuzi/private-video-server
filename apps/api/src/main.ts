@@ -18,7 +18,11 @@ import { environment } from './environments/environment';
     })
   );
 
-  app.use(helmet());
+  app.use(
+    helmet({
+      contentSecurityPolicy: false,
+    })
+  );
   app.use(compression());
 
   if (!environment.production) {

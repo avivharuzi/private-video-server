@@ -16,7 +16,11 @@
     "affected:build": "nx affected:build",
     "affected:e2e": "nx affected:e2e",
     "affected:test": "nx affected:test",
-    "affected:lint": "nx affected:lint"
+    "affected:lint": "nx affected:lint",
+    "build:prod-server": "nx run-many --target build --all",
+    "serve:prod-server": "pm2 start dist/apps/api/main.js --name private-video-server",
+    "stop:prod-server": "pm2 stop private-video-server",
+    "build-and-serve:prod-server": "(npm run stop:prod-server || true) && npm run build:prod-server && npm run serve:prod-server"
   },
   "private": true,
   "dependencies": {
@@ -37,6 +41,7 @@
     "@nestjs/config": "^2.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/serve-static": "^2.2.2",
     "@nestjs/swagger": "^5.2.1",
     "@nestjs/typeorm": "^8.0.0",
     "@nguniversal/express-engine": "~13.1.0",
@@ -104,6 +109,7 @@
     "jest-preset-angular": "11.1.1",
     "lint-staged": "^12.3.7",
     "nx": "13.9.6",
+    "pm2": "^5.2.0",
     "prettier": "^2.5.1",
     "prettier-plugin-organize-attributes": "^0.0.5",
     "prettier-plugin-rational-order": "^1.0.3",
