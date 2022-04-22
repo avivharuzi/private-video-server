@@ -30,7 +30,9 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
   plyr?: Plyr;
 
   ngAfterViewInit(): void {
-    this.plyr = new Plyr(this.videoElementRef.nativeElement);
+    this.plyr = new Plyr(this.videoElementRef.nativeElement, {
+      iconUrl: '/assets/svg/plyr.svg',
+    });
   }
 
   ngOnDestroy(): void {
