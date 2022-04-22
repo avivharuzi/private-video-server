@@ -38,8 +38,10 @@
       </div>
     </div>
     <div class="browse__actions">
-      <button sharedButton variant="text" (click)="onCancel()">Cancel</button>
-      <button sharedButton (click)="onAdd()">Add</button>
+      <button sharedButton variant="text" (click)="onCancel($event)">
+        Cancel
+      </button>
+      <button sharedButton (click)="onAdd($event)">Add</button>
     </div>
   </ng-container>
 </div>

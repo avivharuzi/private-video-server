@@ -1,4 +1,8 @@
-<div class="modal-body">
+<div
+  #modalBodyElement
+  class="modal-body"
+  (click)="onModalBodyClick($event, modalBodyElement)"
+>
   <div class="modal-body__content">
     <ng-content></ng-content>
   </div>

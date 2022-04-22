@@ -90,11 +90,15 @@ export class BrowseComponent implements OnInit {
     }
   }
 
-  onCancel(): void {
+  onCancel(event: Event): void {
+    event.stopPropagation();
+
     this.cancelled.emit();
   }
 
-  onAdd(): void {
+  onAdd(event: Event): void {
+    event.stopPropagation();
+
     this.added.emit(this.path);
   }
 

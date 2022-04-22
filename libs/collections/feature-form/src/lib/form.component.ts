@@ -1,10 +1,18 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { finalize, tap } from 'rxjs';
 
-import { CollectionsService } from '@private-video-server/collections/data-access';
+import {
+  Collection,
+  CollectionsService,
+} from '@private-video-server/collections/data-access';
 
 @Component({
   selector: 'collections-form',
@@ -26,6 +34,8 @@ export class FormComponent {
 
   isLoading = false;
 
+  @Output() added = new EventEmitter<Collection>();
+
   constructor(
     private readonly collectionService: CollectionsService,
     private readonly formBuilder: FormBuilder,
@@ -40,7 +50,9 @@ export class FormComponent {
     this.directories.push(this.formBuilder.control('', [Validators.required]));
   }
 
-  removeDirectory(index: number): void {
+  removeDirectory(event: Event, index: number): void {
+    event.stopPropagation();
+
     this.directories.removeAt(index);
   }
 
@@ -75,7 +87,9 @@ export class FormComponent {
       .create(this.collectionForm.value)
       .pipe(
         tap((collection) => {
-          this.router.navigate(['/collections', collection.id]).then();
+          this.router.navigate(['/collections', collection.id]).then(() => {
+            this.added.emit(collection);
+          });
         }),
         finalize(() => (this.isLoading = false))
       )

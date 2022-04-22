@@ -5,8 +5,24 @@
       <h1>Private Video Server</h1>
     </a>
     <div class="navbar__header__menu">
-      <button iconName="add" sharedButton variant="text">New Collection</button>
+      <button
+        iconName="add"
+        sharedButton
+        variant="text"
+        (click)="onNewCollection($event)"
+      >
+        New Collection
+      </button>
       <button iconName="person" shape="circle" sharedButton></button>
     </div>
   </div>
 </nav>
+
+<shared-modal
+  *ngIf="isNewCollectionModalOpen"
+  (closed)="isNewCollectionModalOpen = false"
+>
+  <shared-modal-body (closed)="isNewCollectionModalOpen = false">
+    <collections-form (added)="onCollectionAdded()"></collections-form>
+  </shared-modal-body>
+</shared-modal>

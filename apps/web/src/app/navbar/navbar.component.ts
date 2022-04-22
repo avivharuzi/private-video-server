@@ -6,4 +6,16 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./navbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+  isNewCollectionModalOpen = false;
+
+  onNewCollection(event: MouseEvent): void {
+    event.stopPropagation();
+
+    this.isNewCollectionModalOpen = true;
+  }
+
+  onCollectionAdded(): void {
+    this.isNewCollectionModalOpen = false;
+  }
+}

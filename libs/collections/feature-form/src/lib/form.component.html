@@ -1,4 +1,4 @@
-<div class="form">
+<div *ngIf="!isBrowseModalOpen" class="form">
   <shared-loader [isLoading]="isLoading"></shared-loader>
 
   <form
@@ -41,7 +41,7 @@
             shape="circle"
             sharedButton
             variant="text"
-            (click)="removeDirectory(i)"
+            (click)="removeDirectory($event, i)"
           ></button>
         </div>
       </div>
@@ -57,11 +57,8 @@
   </form>
 </div>
 
-<shared-modal *ngIf="isBrowseModalOpen" (closed)="isBrowseModalOpen = false">
-  <shared-modal-body>
-    <shared-browse
-      (added)="onBrowseAdded($event)"
-      (cancelled)="isBrowseModalOpen = false"
-    ></shared-browse>
-  </shared-modal-body>
-</shared-modal>
+<shared-browse
+  *ngIf="isBrowseModalOpen"
+  (added)="onBrowseAdded($event)"
+  (cancelled)="isBrowseModalOpen = false"
+></shared-browse>
