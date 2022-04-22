@@ -33,4 +33,8 @@ export class CollectionsService {
   create(collection: CreateCollection): Observable<Collection> {
     return this.httpClient.post<Collection>(this.baseAPIUrl, collection);
   }
+
+  delete(id: string): Observable<Collection> {
+    return this.httpClient.delete<Collection>(`${this.baseAPIUrl}/${id}`);
+  }
 }
