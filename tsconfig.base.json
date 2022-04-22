@@ -33,6 +33,9 @@
       "@private-video-server/collections/feature-detail": [
         "libs/collections/feature-detail/src/index.ts"
       ],
+      "@private-video-server/collections/feature-form": [
+        "libs/collections/feature-form/src/index.ts"
+      ],
       "@private-video-server/collections/feature-list": [
         "libs/collections/feature-list/src/index.ts"
       ],

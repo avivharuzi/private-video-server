@@ -1,0 +1,67 @@
+<div class="form">
+  <shared-loader [isLoading]="isLoading"></shared-loader>
+
+  <form
+    class="collection-form"
+    [formGroup]="collectionForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <section>
+      <span class="collection-form--label">Collection Name</span>
+      <input
+        type="text"
+        formControlName="name"
+        placeholder="Name"
+        sharedInput
+      />
+    </section>
+    <section formGroupName="directories">
+      <span class="collection-form--label">Directories</span>
+      <div class="collection-form__directories">
+        <div
+          *ngFor="let directory of directories.controls; let i = index"
+          class="collection-form__directories__directory"
+        >
+          <input
+            type="text"
+            placeholder="Directory Path"
+            sharedInput
+            [formControlName]="i"
+          />
+          <button
+            iconName="directory"
+            shape="circle"
+            sharedButton
+            variant="text"
+            (click)="openBrowse($event, i)"
+          ></button>
+          <button
+            *ngIf="directories.length > 1"
+            iconName="delete"
+            shape="circle"
+            sharedButton
+            variant="text"
+            (click)="removeDirectory(i)"
+          ></button>
+        </div>
+      </div>
+    </section>
+    <section>
+      <button iconName="add" sharedButton (click)="addDirectory()">
+        Add Directory
+      </button>
+    </section>
+    <section>
+      <button type="submit" sharedButton>Submit</button>
+    </section>
+  </form>
+</div>
+
+<shared-modal *ngIf="isBrowseModalOpen" (closed)="isBrowseModalOpen = false">
+  <shared-modal-body>
+    <shared-browse
+      (added)="onBrowseAdded($event)"
+      (cancelled)="isBrowseModalOpen = false"
+    ></shared-browse>
+  </shared-modal-body>
+</shared-modal>
