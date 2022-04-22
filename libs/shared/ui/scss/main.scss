@@ -61,9 +61,10 @@
 
   /** Z Indexes **/
   --z-index-body: 0;
-  --z-index-navbar: 10;
-  --z-index-dropdown: 20;
-  --z-index-modal: 30;
+  --z-index-loader: 10;
+  --z-index-navbar: 20;
+  --z-index-dropdown: 30;
+  --z-index-modal: 40;
 
   /** Plyr **/
   --plyr-color-main: var(--color-primary);
