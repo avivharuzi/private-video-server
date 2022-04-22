@@ -15,6 +15,7 @@
     "shared-ui-button": "libs/shared/ui/button",
     "shared-ui-icon": "libs/shared/ui/icon",
     "shared-ui-input": "libs/shared/ui/input",
+    "shared-ui-loader": "libs/shared/ui/loader",
     "shared-ui-modal": "libs/shared/ui/modal",
     "shared-ui-video-player": "libs/shared/ui/video-player",
     "web": "apps/web"
