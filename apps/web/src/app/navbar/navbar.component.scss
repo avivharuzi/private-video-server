@@ -1,3 +1,5 @@
+@use 'libs/shared/ui/scss';
+
 .navbar {
   position: fixed;
   z-index: var(--z-index-navbar);
@@ -17,7 +19,11 @@
       align-items: center;
 
       h1 {
-        font-size: var(--font-size-h5);
+        font-size: var(--font-size-h6);
+
+        @include scss.mixins-media-from-xl {
+          font-size: var(--font-size-h5);
+        }
       }
 
       shared-icon {
