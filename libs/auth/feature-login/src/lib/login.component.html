@@ -1,0 +1,28 @@
+<div class="login">
+  <div class="login__form">
+    <shared-loader [isLoading]="isLoading"></shared-loader>
+
+    <div class="login__form__title">
+      <shared-icon name="video-camera"></shared-icon>
+      <h1>Private Video Server</h1>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <input
+        type="text"
+        formControlName="username"
+        placeholder="Username"
+        sharedInput
+      />
+
+      <input
+        type="password"
+        formControlName="password"
+        placeholder="Password"
+        sharedInput
+      />
+
+      <button type="submit" sharedButton>Login</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+@use 'libs/shared/ui/scss';
+
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
+  &__form {
+    position: relative;
+    width: 75%;
+
+    @include scss.mixins-media-from-xl {
+      width: 25%;
+    }
+
+    form {
+      display: flex;
+      flex-flow: column;
+      gap: var(--space-16);
+      align-items: center;
+    }
+
+    &__title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-32);
+
+      h1 {
+        font-size: var(--font-size-h6);
+
+        @include scss.mixins-media-from-xl {
+          font-size: var(--font-size-h5);
+        }
+      }
+
+      shared-icon {
+        margin-right: var(--space-8);
+      }
+    }
+  }
+}

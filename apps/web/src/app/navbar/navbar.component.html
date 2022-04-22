@@ -13,7 +13,22 @@
       >
         New Collection
       </button>
-      <button iconName="person" shape="circle" sharedButton></button>
+      <shared-action-menu>
+        <button
+          iconName="person"
+          shape="circle"
+          sharedActionMenuOrigin
+          sharedButton
+        ></button>
+
+        <div sharedActionMenuDropdown>
+          <shared-action-menu-list>
+            <shared-action-menu-item iconName="logout" (click)="logout()"
+              >Logout</shared-action-menu-item
+            >
+          </shared-action-menu-list>
+        </div>
+      </shared-action-menu>
     </div>
   </div>
 </nav>

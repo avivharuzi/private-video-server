@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
+import { AuthService } from '@private-video-server/shared/data-access-auth';
+
 @Component({
   selector: 'web-navbar',
   templateUrl: './navbar.component.html',
@@ -9,6 +11,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 export class NavbarComponent {
   isNewCollectionModalOpen = false;
 
+  constructor(private readonly authService: AuthService) {}
+
   onNewCollection(event: MouseEvent): void {
     event.stopPropagation();
 
@@ -17,5 +21,9 @@ export class NavbarComponent {
 
   onCollectionAdded(): void {
     this.isNewCollectionModalOpen = false;
+  }
+
+  logout(): void {
+    this.authService.logout();
   }
 }
