@@ -1,6 +1,7 @@
 @use 'libs/shared/ui/scss';
 
 :host {
+  position: relative;
   display: flex;
 }
 

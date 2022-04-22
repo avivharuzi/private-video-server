@@ -1,3 +1,5 @@
+<shared-loader [isLoading]="isLoading"></shared-loader>
+
 <div class="collection-item">
   <a class="collection-item__link" [routerLink]="collection.id">
     <h2>{{ collection.name }}</h2>
@@ -17,7 +19,7 @@
         <shared-action-menu-list>
           <shared-action-menu-item
             iconName="delete"
-            (click)="sharedActionMenu.close()"
+            (click)="onDelete(sharedActionMenu)"
             >Delete</shared-action-menu-item
           >
         </shared-action-menu-list>

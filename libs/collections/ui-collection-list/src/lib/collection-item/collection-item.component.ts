@@ -1,6 +1,18 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 
-import { Collection } from '@private-video-server/collections/data-access';
+import { finalize, tap } from 'rxjs';
+
+import {
+  Collection,
+  CollectionsService,
+} from '@private-video-server/collections/data-access';
+import { ActionMenuComponent } from '@private-video-server/shared/ui/action-menu';
 
 @Component({
   selector: 'collections-collection-item[collection]',
@@ -10,4 +22,28 @@ import { Collection } from '@private-video-server/collections/data-access';
 })
 export class CollectionItemComponent {
   @Input() collection!: Collection;
+
+  @Output() collectionDeleted = new EventEmitter<void>();
+
+  isLoading = false;
+
+  constructor(private readonly collectionService: CollectionsService) {}
+
+  onDelete(sharedActionMenu: ActionMenuComponent): void {
+    sharedActionMenu.close();
+
+    this.isLoading = true;
+
+    this.collectionService
+      .delete(this.collection.id)
+      .pipe(
+        tap(() => {
+          this.collectionDeleted.emit();
+        }),
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe();
+  }
 }
