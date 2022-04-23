@@ -54,14 +54,10 @@ export class VideosService {
 
     const filesPaths = await fastGlob(patterns);
 
-    const createVideoPromises = filesPaths.map((filePath) =>
-      this.createOne(collection, filePath)
-    );
-
     const videos: VideoEntity[] = [];
 
-    for (const createVideoPromise of createVideoPromises) {
-      videos.push(await createVideoPromise);
+    for (const filePath of filesPaths) {
+      videos.push(await this.createOne(collection, filePath));
     }
 
     return videos;
