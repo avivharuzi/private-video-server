@@ -1,6 +1,6 @@
 import * as path from 'node:path';
 
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as del from 'del';
@@ -12,6 +12,7 @@ import { CollectionEntity } from '../collections';
 import { EnvironmentVariables } from '../environment-variables';
 import {
   createFullVideoPreview,
+  CreateFullVideoPreviewOutput,
   getVideoInfo,
   takeScreenshots,
 } from '../utils';
@@ -106,12 +107,19 @@ export class VideosService {
       videoInfo,
     });
 
-    const [coverThumbnail, thumbnails, fullVideoPreviewOutput] =
-      await Promise.all([
+    let coverThumbnail = null;
+    let thumbnails: string[] = [];
+    let fullVideoPreviewOutput: CreateFullVideoPreviewOutput | null = null;
+
+    try {
+      [coverThumbnail, thumbnails, fullVideoPreviewOutput] = await Promise.all([
         saveVideoCoverImagePromise,
         takeScreenshotsPromise,
         createFullVideoPreviewPromise,
       ]);
+    } catch (error) {
+      Logger.error(error);
+    }
 
     video.mediaDirectory = mediaDirectory;
     if (coverThumbnail !== null) {
@@ -119,8 +127,10 @@ export class VideosService {
     }
     video.defaultThumbnail = thumbnails[0] || '';
     video.thumbnails = thumbnails;
-    video.defaultPreview = fullVideoPreviewOutput.videoPreviewFilePath;
-    video.previews = fullVideoPreviewOutput.filePaths;
+    if (fullVideoPreviewOutput !== null) {
+      video.defaultPreview = fullVideoPreviewOutput.videoPreviewFilePath;
+      video.previews = fullVideoPreviewOutput.filePaths;
+    }
 
     await this.videoRepository.save(video);
 
