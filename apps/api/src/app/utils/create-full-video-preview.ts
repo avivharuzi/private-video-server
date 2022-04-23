@@ -56,11 +56,7 @@ export const createFullVideoPreview = async (
     }
   );
 
-  const filePaths: string[] = [];
-
-  for (const createVideoPreviewPromise of createVideoPreviewPromises) {
-    filePaths.push(await createVideoPreviewPromise);
-  }
+  const filePaths = await Promise.all(createVideoPreviewPromises);
 
   const videoPreviewFilePath = path.join(directory, `${generateUUID()}.mp4`);
 
