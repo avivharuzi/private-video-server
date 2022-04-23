@@ -17,6 +17,7 @@
     "affected:e2e": "nx affected:e2e",
     "affected:test": "nx affected:test",
     "affected:lint": "nx affected:lint",
+    "start:local": "nx run-many --target serve --all",
     "build:prod-server": "nx run-many --target build --all",
     "serve:prod-server": "pm2 start dist/apps/api/main.js --name private-video-server",
     "stop:prod-server": "pm2 stop private-video-server",
