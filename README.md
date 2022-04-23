@@ -86,6 +86,12 @@ Build and serve production build in the same command.
 npm run build-and-serve:prod-server
 ```
 
+Clean resources (deletes cache files, media files, and database).
+
+```shell
+npm run clean-resources
+```
+
 # License
 
 [MIT](LICENSE)
