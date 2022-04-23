@@ -86,42 +86,38 @@ export class VideosService {
 
     await Promise.all([mkdirp(thumbnailsDirectory), mkdirp(previewsDirectory)]);
 
-    const saveVideoCoverImagePromise = saveVideoCoverImage(
-      filePath,
-      thumbnailsDirectory
-    );
-
-    const takeScreenshotsPromise = takeScreenshots(filePath, {
-      count: 10,
-      startPositionPercent: 5,
-      endPositionPercent: 95,
-      directory: thumbnailsDirectory,
-    });
-
-    const createFullVideoPreviewPromise = createFullVideoPreview(filePath, {
-      directory: previewsDirectory,
-      numberOfParts: 5,
-      eachPartTimeInSeconds: 3,
-      startPositionPercent: 5,
-      endPositionPercent: 95,
-      videoInfo,
-    });
-
     let coverThumbnail = null;
     let thumbnails: string[] = [];
     let fullVideoPreviewOutput: CreateFullVideoPreviewOutput | null = null;
 
     try {
-      [coverThumbnail, thumbnails, fullVideoPreviewOutput] = await Promise.all([
-        saveVideoCoverImagePromise,
-        takeScreenshotsPromise,
-        createFullVideoPreviewPromise,
-      ]);
+      coverThumbnail = await saveVideoCoverImage(filePath, thumbnailsDirectory);
     } catch (error) {
-      Logger.error(
-        error,
-        `coverThumbnail, thumbnails, fullVideoPreviewOutput, ${filePath}`
-      );
+      Logger.error(error, `coverThumbnail, ${filePath}`);
+    }
+
+    try {
+      thumbnails = await takeScreenshots(filePath, {
+        count: 1,
+        startPositionPercent: 5,
+        endPositionPercent: 95,
+        directory: thumbnailsDirectory,
+      });
+    } catch (error) {
+      Logger.error(error, `thumbnails, ${filePath}`);
+    }
+
+    try {
+      fullVideoPreviewOutput = await createFullVideoPreview(filePath, {
+        directory: previewsDirectory,
+        numberOfParts: 5,
+        eachPartTimeInSeconds: 3,
+        startPositionPercent: 5,
+        endPositionPercent: 95,
+        videoInfo,
+      });
+    } catch (error) {
+      Logger.error(error, `fullVideoPreviewOutput, ${filePath}`);
     }
 
     video.mediaDirectory = mediaDirectory;

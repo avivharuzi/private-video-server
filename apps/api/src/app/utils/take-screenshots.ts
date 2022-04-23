@@ -22,12 +22,18 @@ export const takeScreenshots = async (
   }: TakeScreenshotsOptions
 ): Promise<string[]> => {
   const timestamps: string[] = [];
-  const addPercent = (endPositionPercent - startPositionPercent) / (count - 1);
+  if (count < 2) {
+    timestamps.push(`${startPositionPercent}%`);
+  } else {
+    const addPercent = Math.floor(
+      (endPositionPercent - startPositionPercent) / (count - 1)
+    );
 
-  let i = 0;
-  while (i < count) {
-    timestamps.push(`${startPositionPercent + addPercent * i}%`);
-    i = i + 1;
+    let i = 0;
+    while (i < count) {
+      timestamps.push(`${startPositionPercent + addPercent * i}%`);
+      i = i + 1;
+    }
   }
 
   const promises = timestamps.map((timestamp, index) => {
