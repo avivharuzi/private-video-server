@@ -1,3 +1,4 @@
+import { Logger } from '@nestjs/common';
 import * as ffmpeg from 'fluent-ffmpeg';
 
 export interface VideoInfo {
@@ -8,20 +9,30 @@ export interface VideoInfo {
 }
 
 export const getVideoInfo = (inputFilePath: string): Promise<VideoInfo> => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     ffmpeg.ffprobe(inputFilePath, (error, data) => {
+      const videoInfo: VideoInfo = {
+        width: 0,
+        height: 0,
+        duration: 0,
+        size: 0,
+      };
+
       if (error) {
-        return reject(error);
+        Logger.error(error, `getVideoInfo, ${inputFilePath}`);
+
+        return resolve(videoInfo);
       }
 
       const { duration, size } = data.format;
 
-      const videoInfo: VideoInfo = {
-        width: 0,
-        height: 0,
-        duration: duration || 0,
-        size: size || 0,
-      };
+      if (duration) {
+        videoInfo.duration = duration;
+      }
+
+      if (size) {
+        videoInfo.size = size;
+      }
 
       for (const stream of data.streams) {
         if (stream.codec_type !== 'video') {

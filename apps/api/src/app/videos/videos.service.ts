@@ -118,7 +118,10 @@ export class VideosService {
         createFullVideoPreviewPromise,
       ]);
     } catch (error) {
-      Logger.error(error);
+      Logger.error(
+        error,
+        `coverThumbnail, thumbnails, fullVideoPreviewOutput, ${filePath}`
+      );
     }
 
     video.mediaDirectory = mediaDirectory;
