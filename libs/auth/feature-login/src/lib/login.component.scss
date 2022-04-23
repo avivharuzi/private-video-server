@@ -10,6 +10,11 @@
   &__form {
     position: relative;
     width: 75%;
+    padding: var(--space-32);
+    background: var(--color-white);
+    border: var(--border-size-sm) solid var(--color-text);
+    border-radius: var(--border-radius-rectangle);
+    box-shadow: var(--box-shadow-lg);
 
     @include scss.mixins-media-from-xl {
       width: 25%;

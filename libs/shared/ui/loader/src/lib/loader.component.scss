@@ -1,5 +1,7 @@
 .loader {
   position: absolute;
+  top: 0;
+  left: 0;
   z-index: var(--z-index-loader);
   display: grid;
   width: 100%;

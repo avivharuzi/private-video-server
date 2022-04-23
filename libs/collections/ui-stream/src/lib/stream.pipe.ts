@@ -4,6 +4,7 @@ import {
   CollectionsConfig,
   CollectionsConfigInjectionToken,
 } from '@private-video-server/collections/data-access';
+import { AuthService } from '@private-video-server/shared/data-access-auth';
 
 import { StreamType } from './stream-type';
 
@@ -15,12 +16,17 @@ export class StreamPipe implements PipeTransform {
 
   constructor(
     @Inject(CollectionsConfigInjectionToken)
-    private readonly collectionsConfig: CollectionsConfig
+    private readonly collectionsConfig: CollectionsConfig,
+    private readonly authService: AuthService
   ) {}
 
   transform(value: string, type: StreamType): string {
     const valueEncoded = type !== 'video' ? encodeURIComponent(value) : value;
 
-    return `${this.baseAPIUrl}/${type}/${valueEncoded}`;
+    const params = new URLSearchParams({
+      accessToken: this.authService.getAccessToken() || '',
+    });
+
+    return `${this.baseAPIUrl}/${type}/${valueEncoded}?${params.toString()}`;
   }
 }
