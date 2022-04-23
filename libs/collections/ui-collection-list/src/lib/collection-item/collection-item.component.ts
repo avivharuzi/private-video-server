@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -27,7 +28,10 @@ export class CollectionItemComponent {
 
   isLoading = false;
 
-  constructor(private readonly collectionService: CollectionsService) {}
+  constructor(
+    private readonly changeDetectorRef: ChangeDetectorRef,
+    private readonly collectionService: CollectionsService
+  ) {}
 
   onDelete(sharedActionMenu: ActionMenuComponent): void {
     sharedActionMenu.close();
@@ -42,6 +46,7 @@ export class CollectionItemComponent {
         }),
         finalize(() => {
           this.isLoading = false;
+          this.changeDetectorRef.detectChanges();
         })
       )
       .subscribe();

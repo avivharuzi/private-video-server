@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Output,
@@ -37,6 +38,7 @@ export class FormComponent {
   @Output() added = new EventEmitter<Collection>();
 
   constructor(
+    private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly collectionService: CollectionsService,
     private readonly formBuilder: FormBuilder,
     private readonly router: Router
@@ -91,7 +93,10 @@ export class FormComponent {
             this.added.emit(collection);
           });
         }),
-        finalize(() => (this.isLoading = false))
+        finalize(() => {
+          this.isLoading = false;
+          this.changeDetectorRef.detectChanges();
+        })
       )
       .subscribe();
   }
