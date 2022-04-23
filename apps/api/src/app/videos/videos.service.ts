@@ -58,7 +58,13 @@ export class VideosService {
       this.createOne(collection, filePath)
     );
 
-    return Promise.all(createVideoPromises);
+    const videos: VideoEntity[] = [];
+
+    for (const createVideoPromise of createVideoPromises) {
+      videos.push(await createVideoPromise);
+    }
+
+    return videos;
   }
 
   async createOne(
