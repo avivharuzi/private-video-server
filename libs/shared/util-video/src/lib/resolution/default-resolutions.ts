@@ -44,6 +44,12 @@ export const DEFAULT_RESOLUTIONS: Resolution[] = [
     height: 2160,
   },
   {
+    name: '2880p',
+    quality: '5K',
+    width: 5120,
+    height: 2880,
+  },
+  {
     name: '4320p',
     quality: '8K',
     width: 7680,
