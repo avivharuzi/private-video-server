@@ -84,8 +84,17 @@
       "@private-video-server/shared/ui/modal": [
         "libs/shared/ui/modal/src/index.ts"
       ],
+      "@private-video-server/shared/ui/video-duration": [
+        "libs/shared/ui/video-duration/src/index.ts"
+      ],
       "@private-video-server/shared/ui/video-player": [
         "libs/shared/ui/video-player/src/index.ts"
+      ],
+      "@private-video-server/shared/ui/video-quality": [
+        "libs/shared/ui/video-quality/src/index.ts"
+      ],
+      "@private-video-server/shared/util-video": [
+        "libs/shared/util-video/src/index.ts"
       ]
     }
   },

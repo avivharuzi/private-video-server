@@ -29,6 +29,17 @@
     >
       <shared-icon name="play"></shared-icon>
     </div>
+    <div
+      class="video-item__img-container__video-info"
+      [class.video-item__img-container__video-info--close]="hasVideoPreview"
+    >
+      <span class="video-item__img-container__video-info--quality">{{
+        ([video.info.width, video.info.height] | sharedVideoQuality).name
+      }}</span>
+      <span class="video-item__img-container__video-info--duration">{{
+        video.info.duration | sharedVideoDuration
+      }}</span>
+    </div>
   </div>
   <h3>{{ video.title }}</h3>
 </div>

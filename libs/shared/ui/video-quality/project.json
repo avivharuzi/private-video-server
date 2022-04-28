@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/shared/ui/video-quality",
+  "sourceRoot": "libs/shared/ui/video-quality/src",
+  "prefix": "shared",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/ui/video-quality"],
+      "options": {
+        "jestConfig": "libs/shared/ui/video-quality/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/video-quality/src/**/*.ts",
+          "libs/shared/ui/video-quality/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:shared", "type:ui"]
+}

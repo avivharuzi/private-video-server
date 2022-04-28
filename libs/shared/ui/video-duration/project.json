@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/shared/ui/video-duration",
+  "sourceRoot": "libs/shared/ui/video-duration/src",
+  "prefix": "shared",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/ui/video-duration"],
+      "options": {
+        "jestConfig": "libs/shared/ui/video-duration/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/video-duration/src/**/*.ts",
+          "libs/shared/ui/video-duration/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:shared", "type:ui"]
+}

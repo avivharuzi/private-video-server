@@ -9,6 +9,7 @@
     position: relative;
     width: 100%;
     height: 100%;
+    outline: none;
     box-shadow: var(--box-shadow-md);
     cursor: pointer;
 
@@ -52,6 +53,46 @@
         width: 100%;
         height: 100%;
         color: var(--color-white-50);
+      }
+    }
+
+    &__video-info {
+      position: absolute;
+      right: var(--space-8);
+      bottom: var(--space-8);
+      display: flex;
+      flex-flow: column;
+      gap: var(--space-4);
+      align-items: end;
+      opacity: 1;
+      transition: opacity var(--transitions-speed-slow);
+
+      &--close {
+        opacity: 0;
+      }
+
+      &--quality,
+      &--duration {
+        padding: var(--space-4);
+        color: var(--color-white-85);
+        background: var(--color-black-50);
+        border-radius: var(--border-radius-rectangle);
+
+        @include scss.mixins-media-from-xl {
+          padding: var(--space-8);
+        }
+      }
+
+      &--quality {
+        font-size: var(--font-size-h6);
+
+        @include scss.mixins-media-from-xl {
+          font-size: var(--font-size-h5);
+        }
+      }
+
+      &--duration {
+        font-size: var(--font-size-h7);
       }
     }
   }
