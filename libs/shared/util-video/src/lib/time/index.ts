@@ -1,1 +1,1 @@
-export * from './convert-seconds-to-minutes';
+export * from './convert-seconds-to-time';

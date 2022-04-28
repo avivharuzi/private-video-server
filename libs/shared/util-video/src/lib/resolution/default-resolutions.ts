@@ -40,7 +40,7 @@ export const DEFAULT_RESOLUTIONS: Resolution[] = [
   {
     name: '2160p',
     quality: '4K',
-    width: 3840,
+    width: 4096,
     height: 2160,
   },
   {
