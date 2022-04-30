@@ -21,4 +21,6 @@ export class ButtonComponent {
   @Input() color: SharedUiButtonColor = 'primary';
 
   @Input() size: SharedUiButtonSize = 'md';
+
+  @Input() hasPadding = true;
 }

@@ -43,6 +43,10 @@
     padding: var(--space-8);
     font-size: var(--font-size-h6);
   }
+
+  &.button--no-padding {
+    padding: 0;
+  }
 }
 
 .button--shape-rectangle {

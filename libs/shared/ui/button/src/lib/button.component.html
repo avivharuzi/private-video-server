@@ -1,5 +1,6 @@
 <div
   class="button"
+  [class.button--no-padding]="!hasPadding"
   [ngClass]="[
     'button--variant-' + variant,
     'button--shape-' + shape,
