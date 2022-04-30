@@ -7,6 +7,7 @@ import {
 import { AuthService } from '@private-video-server/shared/data-access-auth';
 
 import { StreamType } from './stream-type';
+import { VIDEO_STREAMS } from './video-streams';
 
 @Pipe({
   name: 'stream',
@@ -21,7 +22,9 @@ export class StreamPipe implements PipeTransform {
   ) {}
 
   transform(value: string, type: StreamType): string {
-    const valueEncoded = type !== 'video' ? encodeURIComponent(value) : value;
+    const valueEncoded = VIDEO_STREAMS.includes(type)
+      ? value
+      : encodeURIComponent(value);
 
     const params = new URLSearchParams({
       accessToken: this.authService.getAccessToken() || '',

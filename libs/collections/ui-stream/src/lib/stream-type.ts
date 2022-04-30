@@ -1,1 +1,1 @@
-export type StreamType = 'thumbnails' | 'previews' | 'video';
+export type StreamType = 'thumbnails' | 'previews' | 'video' | 'video-download';
