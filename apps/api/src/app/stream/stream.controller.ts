@@ -47,4 +47,10 @@ export class StreamController {
       headers,
     });
   }
+
+  @Get('video-download/:id')
+  async videoDownload(@Param('id') id: string, @Res() res: Response) {
+    const video = await this.videoService.findOne(id);
+    return res.download(video.filePath);
+  }
 }
