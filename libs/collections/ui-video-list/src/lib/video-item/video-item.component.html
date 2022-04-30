@@ -1,3 +1,5 @@
+<shared-loader [isLoading]="isLoading"></shared-loader>
+
 <div class="video-item">
   <div
     class="video-item__img-container"
@@ -56,6 +58,20 @@
 
         <div sharedActionMenuDropdown>
           <shared-action-menu-list>
+            <div (click)="sharedActionMenu.close()">
+              <label [for]="video.id + '-cover-thumbnail'">
+                <shared-action-menu-item iconName="image">
+                  Change Cover Thumbnail
+                </shared-action-menu-item>
+              </label>
+              <input
+                class="video-item__input-file"
+                type="file"
+                accept="image/jpg,image/jpeg,image/png"
+                [id]="video.id + '-cover-thumbnail'"
+                (change)="onFileChange($event)"
+              />
+            </div>
             <a
               target="_blank"
               [href]="video.id | stream: 'video'"

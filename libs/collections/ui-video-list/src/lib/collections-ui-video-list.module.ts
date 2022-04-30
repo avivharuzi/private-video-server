@@ -6,6 +6,7 @@ import { CollectionsUiStreamModule } from '@private-video-server/collections/ui-
 import { SharedUiActionMenuModule } from '@private-video-server/shared/ui/action-menu';
 import { SharedUiButtonModule } from '@private-video-server/shared/ui/button';
 import { SharedUiIconModule } from '@private-video-server/shared/ui/icon';
+import { SharedUiLoaderModule } from '@private-video-server/shared/ui/loader';
 import { SharedUiVideoDurationModule } from '@private-video-server/shared/ui/video-duration';
 import { SharedUiVideoQualityModule } from '@private-video-server/shared/ui/video-quality';
 
@@ -20,6 +21,7 @@ import { VideoListComponent } from './video-list.component';
     SharedUiActionMenuModule,
     SharedUiButtonModule,
     SharedUiIconModule,
+    SharedUiLoaderModule,
     SharedUiVideoQualityModule,
     SharedUiVideoDurationModule,
   ],

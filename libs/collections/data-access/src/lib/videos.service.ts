@@ -24,4 +24,14 @@ export class VideosService {
   getDetail(id: string): Observable<Video> {
     return this.httpClient.get<Video>(`${this.baseAPIUrl}/${id}`);
   }
+
+  changeCoverThumbnail(id: string, file: File): Observable<Video> {
+    const formData = new FormData();
+    formData.set('coverThumbnail', file);
+
+    return this.httpClient.post<Video>(
+      `${this.baseAPIUrl}/${id}/change-cover-thumbnail`,
+      formData
+    );
+  }
 }
