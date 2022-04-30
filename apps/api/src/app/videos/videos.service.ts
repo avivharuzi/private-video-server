@@ -1,3 +1,4 @@
+import * as fs from 'node:fs';
 import * as path from 'node:path';
 
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
@@ -11,6 +12,7 @@ import { Repository } from 'typeorm';
 import { CollectionEntity } from '../collections';
 import { EnvironmentVariables } from '../environment-variables';
 import {
+  addCoverImageToVideoWithBuffer,
   createFullVideoPreview,
   CreateFullVideoPreviewOutput,
   getVideoInfo,
@@ -150,5 +152,47 @@ export class VideosService {
     await this.videoRepository.delete(id);
 
     return video;
+  }
+
+  async changeCoverThumbnail(
+    id: string,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    coverThumbnail: Express.Multer.File
+  ): Promise<VideoEntity> {
+    const video = await this.findOne(id);
+
+    const thumbnailsDirectory = path.join(video.mediaDirectory, 'thumbnails');
+
+    const videoFilePath = video.filePath;
+
+    await addCoverImageToVideoWithBuffer(videoFilePath, {
+      coverImage: coverThumbnail.buffer,
+      coverImageFileName: coverThumbnail.originalname,
+      coverImageDirectory: thumbnailsDirectory,
+    });
+
+    let newCoverThumbnail: string | null = null;
+    try {
+      newCoverThumbnail = await saveVideoCoverImage(
+        videoFilePath,
+        thumbnailsDirectory
+      );
+    } catch (error) {
+      Logger.error(error, `coverThumbnail, ${videoFilePath}`);
+    }
+
+    if (newCoverThumbnail) {
+      const oldCoverThumbnail = video.coverThumbnail;
+
+      video.coverThumbnail = newCoverThumbnail;
+      await this.videoRepository.save(video);
+
+      if (oldCoverThumbnail) {
+        await fs.promises.rm(oldCoverThumbnail);
+      }
+    }
+
+    return this.findOne(id);
   }
 }
