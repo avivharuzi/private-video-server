@@ -41,5 +41,41 @@
       }}</span>
     </div>
   </div>
-  <h3>{{ video.title }}</h3>
+  <div class="video-item__title-and-actions">
+    <h3>{{ video.title }}</h3>
+    <div class="video-item__actions">
+      <shared-action-menu #sharedActionMenu>
+        <button
+          iconName="more-vertical"
+          shape="circle"
+          sharedActionMenuOrigin
+          sharedButton
+          variant="text"
+        ></button>
+
+        <div sharedActionMenuDropdown>
+          <shared-action-menu-list>
+            <a
+              target="_blank"
+              [href]="video.id | stream: 'video'"
+              (click)="sharedActionMenu.close()"
+            >
+              <shared-action-menu-item iconName="link"
+                >Direct Stream</shared-action-menu-item
+              >
+            </a>
+            <a
+              target="_blank"
+              [href]="video.id | stream: 'video-download'"
+              (click)="sharedActionMenu.close()"
+            >
+              <shared-action-menu-item iconName="download"
+                >Download</shared-action-menu-item
+              >
+            </a>
+          </shared-action-menu-list>
+        </div>
+      </shared-action-menu>
+    </div>
+  </div>
 </div>

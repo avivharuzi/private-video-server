@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { CollectionsUiStreamModule } from '@private-video-server/collections/ui-stream';
+import { SharedUiActionMenuModule } from '@private-video-server/shared/ui/action-menu';
+import { SharedUiButtonModule } from '@private-video-server/shared/ui/button';
 import { SharedUiIconModule } from '@private-video-server/shared/ui/icon';
 import { SharedUiVideoDurationModule } from '@private-video-server/shared/ui/video-duration';
 import { SharedUiVideoQualityModule } from '@private-video-server/shared/ui/video-quality';
@@ -15,6 +17,8 @@ import { VideoListComponent } from './video-list.component';
     CommonModule,
     RouterModule,
     CollectionsUiStreamModule,
+    SharedUiActionMenuModule,
+    SharedUiButtonModule,
     SharedUiIconModule,
     SharedUiVideoQualityModule,
     SharedUiVideoDurationModule,

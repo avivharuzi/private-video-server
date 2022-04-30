@@ -97,14 +97,33 @@
     }
   }
 
-  h3 {
+  &__title-and-actions {
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
     margin-top: var(--space-16);
-    font-size: var(--font-size-h6);
 
     @include scss.mixins-media-from-xl {
-      font-size: var(--font-size-h5);
+      height: 44px;
     }
 
-    @include scss.mixins-line-clamp(2);
+    h3 {
+      height: fit-content;
+      margin-right: var(--space-8);
+      font-size: var(--font-size-h6);
+
+      @include scss.mixins-media-from-xl {
+        font-size: var(--font-size-h5);
+      }
+
+      @include scss.mixins-line-clamp(2);
+    }
+  }
+
+  &__actions {
+    a {
+      display: flex;
+      width: 100%;
+    }
   }
 }
