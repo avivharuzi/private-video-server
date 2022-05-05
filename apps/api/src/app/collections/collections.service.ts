@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
+import { isFileExists } from '../utils';
 import { VideosService } from '../videos/videos.service';
 import { CollectionEntity } from './collection.entity';
 import { CreateCollectionDto } from './dto';
@@ -51,6 +52,30 @@ export class CollectionsService {
     return collection;
   }
 
+  async refresh(id: string): Promise<CollectionEntity> {
+    const collection = await this.findOne(id);
+
+    const { directories } = collection;
+
+    const existingVideosFilesPaths = collection.videos.map(
+      (video) => video.filePath
+    );
+
+    const createVideosPromises = directories.map((directory) =>
+      this.videosService.createMany(
+        collection,
+        directory,
+        existingVideosFilesPaths
+      )
+    );
+
+    await Promise.all(createVideosPromises);
+
+    await this.deleteNotExistsVideos(id);
+
+    return this.findOne(id);
+  }
+
   async delete(id: string): Promise<CollectionEntity> {
     const collection = await this.findOne(id);
 
@@ -63,5 +88,20 @@ export class CollectionsService {
     await this.collectionRepository.delete(id);
 
     return collection;
+  }
+
+  async deleteNotExistsVideos(id: string): Promise<void> {
+    const collection = await this.findOne(id);
+
+    const deletePromises = collection.videos.map(async (video) => {
+      const isVideoFilePathExists = await isFileExists(video.filePath);
+      if (isVideoFilePathExists) {
+        return video;
+      }
+
+      return this.videosService.deleteOne(video.id);
+    });
+
+    await Promise.all(deletePromises);
   }
 }

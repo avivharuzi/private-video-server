@@ -33,6 +33,22 @@ export class CollectionItemComponent {
     private readonly collectionService: CollectionsService
   ) {}
 
+  onRefresh(sharedActionMenu: ActionMenuComponent): void {
+    sharedActionMenu.close();
+
+    this.isLoading = true;
+
+    this.collectionService
+      .refresh(this.collection.id)
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+          this.changeDetectorRef.detectChanges();
+        })
+      )
+      .subscribe();
+  }
+
   onDelete(sharedActionMenu: ActionMenuComponent): void {
     sharedActionMenu.close();
 

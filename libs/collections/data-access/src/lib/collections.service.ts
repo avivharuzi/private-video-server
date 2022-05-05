@@ -34,6 +34,13 @@ export class CollectionsService {
     return this.httpClient.post<Collection>(this.baseAPIUrl, collection);
   }
 
+  refresh(id: string): Observable<Collection> {
+    return this.httpClient.put<Collection>(
+      `${this.baseAPIUrl}/refresh/${id}`,
+      {}
+    );
+  }
+
   delete(id: string): Observable<Collection> {
     return this.httpClient.delete<Collection>(`${this.baseAPIUrl}/${id}`);
   }

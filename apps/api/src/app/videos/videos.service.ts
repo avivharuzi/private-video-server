@@ -46,20 +46,21 @@ export class VideosService {
 
   async createMany(
     collection: CollectionEntity,
-    directory: string
+    directory: string,
+    existingFilesPaths: string[] = []
   ): Promise<VideoEntity[]> {
-    const patterns: string[] = [];
-
-    for (const extension of VIDEO_EXTENSIONS) {
-      patterns.push(`${directory}/**/*${extension}`);
-    }
-
-    const filesPaths = await fastGlob(patterns);
+    const filesPaths = await this.getFilesPaths(directory);
 
     const videos: VideoEntity[] = [];
 
     for (const filePath of filesPaths) {
-      videos.push(await this.createOne(collection, filePath));
+      if (existingFilesPaths.includes(filePath)) {
+        continue;
+      }
+
+      const video = await this.createOne(collection, filePath);
+
+      videos.push(video);
     }
 
     return videos;
@@ -194,5 +195,15 @@ export class VideosService {
     }
 
     return this.findOne(id);
+  }
+
+  async getFilesPaths(directory: string): Promise<string[]> {
+    const patterns: string[] = [];
+
+    for (const extension of VIDEO_EXTENSIONS) {
+      patterns.push(`${directory}/**/*${extension}`);
+    }
+
+    return fastGlob(patterns);
   }
 }

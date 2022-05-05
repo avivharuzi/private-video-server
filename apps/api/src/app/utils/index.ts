@@ -5,4 +5,5 @@ export * from './create-video-preview';
 export * from './generate-uuid';
 export * from './get-file-number';
 export * from './get-video-info';
+export * from './is-file-exists';
 export * from './take-screenshots';
