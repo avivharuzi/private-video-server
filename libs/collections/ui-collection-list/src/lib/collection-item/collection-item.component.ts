@@ -14,6 +14,7 @@ import {
   CollectionsService,
 } from '@private-video-server/collections/data-access';
 import { ActionMenuComponent } from '@private-video-server/shared/ui/action-menu';
+import { SharedUiToastrService } from '@private-video-server/shared/ui/toastr';
 
 @Component({
   selector: 'collections-collection-item[collection]',
@@ -30,7 +31,8 @@ export class CollectionItemComponent {
 
   constructor(
     private readonly changeDetectorRef: ChangeDetectorRef,
-    private readonly collectionService: CollectionsService
+    private readonly collectionService: CollectionsService,
+    private readonly sharedUiToastrService: SharedUiToastrService
   ) {}
 
   onRefresh(sharedActionMenu: ActionMenuComponent): void {
@@ -41,6 +43,11 @@ export class CollectionItemComponent {
     this.collectionService
       .refresh(this.collection.id)
       .pipe(
+        tap((collection) => {
+          this.sharedUiToastrService.showSuccessMessage(
+            `Collection "${collection.name}" was refreshed successfully`
+          );
+        }),
         finalize(() => {
           this.isLoading = false;
           this.changeDetectorRef.detectChanges();
@@ -57,7 +64,11 @@ export class CollectionItemComponent {
     this.collectionService
       .delete(this.collection.id)
       .pipe(
-        tap(() => {
+        tap((collection) => {
+          this.sharedUiToastrService.showSuccessMessage(
+            `Collection "${collection.name}" was deleted successfully`
+          );
+
           this.collectionDeleted.emit();
         }),
         finalize(() => {

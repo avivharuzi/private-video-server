@@ -14,6 +14,7 @@ import {
   Collection,
   CollectionsService,
 } from '@private-video-server/collections/data-access';
+import { SharedUiToastrService } from '@private-video-server/shared/ui/toastr';
 
 @Component({
   selector: 'collections-form',
@@ -41,7 +42,8 @@ export class FormComponent {
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly collectionService: CollectionsService,
     private readonly formBuilder: FormBuilder,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly sharedUiToastrService: SharedUiToastrService
   ) {}
 
   get directories(): FormArray {
@@ -89,6 +91,10 @@ export class FormComponent {
       .create(this.collectionForm.value)
       .pipe(
         tap((collection) => {
+          this.sharedUiToastrService.showSuccessMessage(
+            `Collection "${collection.name}" was created successfully`
+          );
+
           this.router.navigate(['/collections', collection.id]).then(() => {
             this.added.emit(collection);
           });
