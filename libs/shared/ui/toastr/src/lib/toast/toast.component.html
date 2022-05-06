@@ -1,4 +1,4 @@
-<div class="toast" [ngClass]="['toast--color-' + color]">
+<div @fadeInOut class="toast" [ngClass]="['toast--color-' + color]">
   <div class="toast__content">
     <shared-icon
       *ngIf="hasIcon"

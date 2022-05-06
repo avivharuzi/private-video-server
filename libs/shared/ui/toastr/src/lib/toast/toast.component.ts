@@ -1,4 +1,11 @@
 import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import {
   ChangeDetectionStrategy,
   Component,
   Input,
@@ -13,6 +20,12 @@ import { SharedUiToastrService } from '../shared-ui-toastr.service';
   templateUrl: './toast.component.html',
   styleUrls: ['./toast.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger('fadeInOut', [
+      state('void', style({ opacity: 0 })),
+      transition('* <=> *', animate(500)),
+    ]),
+  ],
 })
 export class ToastComponent {
   @Input() id!: string;
