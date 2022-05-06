@@ -2,5 +2,6 @@
   <collections-video-item
     *ngFor="let video of videos"
     [video]="video"
+    (videoDeleted)="onVideoDeleted(video)"
   ></collections-video-item>
 </div>

@@ -10,4 +10,8 @@ import { Video } from '@private-video-server/collections/data-access';
 })
 export class VideoListComponent {
   @Input() videos: Video[] = [];
+
+  onVideoDeleted(deletedVideo: Video): void {
+    this.videos = this.videos.filter((video) => video.id !== deletedVideo.id);
+  }
 }

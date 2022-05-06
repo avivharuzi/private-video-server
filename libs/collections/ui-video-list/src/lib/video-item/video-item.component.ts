@@ -2,7 +2,9 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  EventEmitter,
   Input,
+  Output,
 } from '@angular/core';
 
 import { finalize, tap } from 'rxjs';
@@ -11,6 +13,7 @@ import {
   Video,
   VideosService,
 } from '@private-video-server/collections/data-access';
+import { ActionMenuComponent } from '@private-video-server/shared/ui/action-menu';
 
 @Component({
   selector: 'collections-video-item[video]',
@@ -20,6 +23,8 @@ import {
 })
 export class VideoItemComponent {
   @Input() video!: Video;
+
+  @Output() videoDeleted = new EventEmitter<void>();
 
   hasVideoPreview = false;
   isLoading = false;
@@ -45,6 +50,25 @@ export class VideoItemComponent {
       .pipe(
         tap((updatedVideo) => {
           this.video = updatedVideo;
+        }),
+        finalize(() => {
+          this.isLoading = false;
+          this.changeDetectorRef.detectChanges();
+        })
+      )
+      .subscribe();
+  }
+
+  onDelete(sharedActionMenu: ActionMenuComponent): void {
+    sharedActionMenu.close();
+
+    this.isLoading = true;
+
+    this.videosService
+      .delete(this.video.id)
+      .pipe(
+        tap(() => {
+          this.videoDeleted.emit();
         }),
         finalize(() => {
           this.isLoading = false;

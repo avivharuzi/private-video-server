@@ -1,6 +1,7 @@
 import {
   BadRequestException,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
@@ -20,11 +21,16 @@ export class VideosController {
     return this.videosService.findOne(id);
   }
 
+  @Delete(':id')
+  deleteOne(@Param('id') id: string) {
+    return this.videosService.deleteOne(id);
+  }
+
   @Post(':id/change-cover-thumbnail')
   @UseInterceptors(
     FileFieldsInterceptor([{ name: 'coverThumbnail', maxCount: 1 }])
   )
-  uploadFile(
+  changeCoverThumbnail(
     @Param('id') id: string,
     @UploadedFiles()
     files?: {
