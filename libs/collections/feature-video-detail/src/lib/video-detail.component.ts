@@ -2,13 +2,17 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  HostListener,
   ViewChild,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { switchMap } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
 
-import { VideosService } from '@private-video-server/collections/data-access';
+import {
+  Video,
+  VideosService,
+} from '@private-video-server/collections/data-access';
 
 @Component({
   selector: 'collections-video-detail',
@@ -28,9 +32,22 @@ export class VideoDetailComponent {
     switchMap((paramMap) => {
       this.collectionId = paramMap.get('id') || '';
 
-      return this.videosService.getDetail(paramMap.get('videoId') || '');
+      return this.videosService
+        .getDetail(paramMap.get('videoId') || '')
+        .pipe(tap((video) => (this.video = video)));
     })
   );
+
+  video?: Video;
+
+  @HostListener('document:keydown', ['$event'])
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key !== 'Enter' || !event.metaKey) {
+      return;
+    }
+
+    this.takeScreenshot();
+  }
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
@@ -48,5 +65,37 @@ export class VideoDetailComponent {
     if (nativeElement && nativeElement === event.target) {
       this.onModalClosed();
     }
+  }
+
+  takeScreenshot(): void {
+    const video = this.video;
+    if (!video) {
+      return;
+    }
+
+    const videoHTMLElement = document.querySelector('video');
+    const canvas = document.createElement('canvas');
+    canvas.width = video.info.width;
+    canvas.height = video.info.height;
+    const canvasContext = canvas.getContext('2d');
+    if (canvasContext === null) {
+      return;
+    }
+    canvasContext.drawImage(
+      videoHTMLElement as CanvasImageSource,
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
+    const dataURI = canvas.toDataURL('image/jpg');
+
+    const link = document.createElement('a');
+    link.href = dataURI;
+    link.setAttribute('target', '_blank');
+    link.download = `${video.title}.jpg`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 }
