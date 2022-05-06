@@ -1,4 +1,4 @@
-<div class="action-menu-item">
+<div class="action-menu-item" [ngClass]="['action-menu-item--' + color]">
   <shared-icon *ngIf="iconName" [name]="iconName"></shared-icon>
   <ng-content></ng-content>
 </div>

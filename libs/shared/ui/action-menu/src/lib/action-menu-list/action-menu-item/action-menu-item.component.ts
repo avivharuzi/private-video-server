@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
+import { SharedActionMenuItemColor } from '../../shared-action-menu-item-color';
+
 @Component({
   selector: 'shared-action-menu-item',
   templateUrl: './action-menu-item.component.html',
@@ -8,4 +10,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class ActionMenuItemComponent {
   @Input() iconName = '';
+
+  @Input() color: SharedActionMenuItemColor = 'text';
 }

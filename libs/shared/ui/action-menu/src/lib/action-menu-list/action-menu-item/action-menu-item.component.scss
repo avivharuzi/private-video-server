@@ -12,6 +12,10 @@
   background-color: var(--color-gray);
   cursor: pointer;
 
+  &--error {
+    color: var(--color-error);
+  }
+
   shared-icon {
     margin-right: var(--space-8);
   }
