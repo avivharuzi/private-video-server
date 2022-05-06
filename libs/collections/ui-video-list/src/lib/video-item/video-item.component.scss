@@ -24,6 +24,7 @@
       height: 100%;
       object-fit: cover;
       border-radius: var(--border-radius-rectangle);
+      aspect-ratio: inherit;
     }
 
     &__video-preview {
@@ -32,12 +33,14 @@
       left: 0;
       width: 100%;
       height: 100%;
+      aspect-ratio: inherit;
 
       video {
         width: 100%;
         height: 100%;
         object-fit: cover;
         border-radius: var(--border-radius-rectangle);
+        aspect-ratio: inherit;
       }
     }
 
@@ -68,7 +71,7 @@
       display: flex;
       flex-flow: column;
       gap: var(--space-4);
-      align-items: end;
+      align-items: flex-end;
       opacity: 1;
       transition: opacity var(--transitions-speed-slow);
 
