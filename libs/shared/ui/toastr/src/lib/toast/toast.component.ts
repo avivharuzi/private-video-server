@@ -6,23 +6,18 @@ import {
 } from '@angular/core';
 
 import { SharedUiToastrColor } from '../shared-ui-toastr-color';
+import { SharedUiToastrService } from '../shared-ui-toastr.service';
 
 @Component({
-  selector: 'shared-toast[color]',
+  selector: 'shared-toast[id][color]',
   templateUrl: './toast.component.html',
   styleUrls: ['./toast.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToastComponent {
-  @Input() set color(color: SharedUiToastrColor) {
-    this.toastrColor = color;
+  @Input() id!: string;
 
-    if (color === 'error') {
-      this.iconName = 'error';
-    } else if (color === 'success') {
-      this.iconName = 'check';
-    }
-  }
+  @Input() color!: SharedUiToastrColor;
 
   @Input() hasIcon = true;
 
@@ -32,7 +27,9 @@ export class ToastComponent {
 
   @Input() templateContent: TemplateRef<unknown> | null = null;
 
-  iconName = '';
+  constructor(private readonly sharedUiToastrService: SharedUiToastrService) {}
 
-  toastrColor!: SharedUiToastrColor;
+  onClose(): void {
+    this.sharedUiToastrService.closeMessage(this.id);
+  }
 }

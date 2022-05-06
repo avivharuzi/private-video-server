@@ -1,0 +1,14 @@
+.toastr-container {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  z-index: var(--z-index-toast);
+  margin-top: var(--space-16);
+  transform: translateX(-50%);
+
+  &__items {
+    display: flex;
+    flex-flow: column;
+    gap: var(--space-8);
+  }
+}
