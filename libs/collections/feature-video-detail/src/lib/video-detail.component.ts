@@ -92,7 +92,7 @@ export class VideoDetailComponent {
 
     const link = document.createElement('a');
     link.href = dataURI;
-    link.setAttribute('target', '_blank');
+    link.target = '_blank';
     link.download = `${video.title}.jpg`;
     document.body.appendChild(link);
     link.click();
