@@ -7,6 +7,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { CollectionsDataAccessModule } from '@private-video-server/collections/data-access';
 import { SharedDataAccessAuthModule } from '@private-video-server/shared/data-access-auth';
 import { SharedDataAccessBrowseModule } from '@private-video-server/shared/data-access-browse';
+import { SharedUiToastrModule } from '@private-video-server/shared/ui/toastr';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -36,6 +37,7 @@ import { NavbarModule } from './navbar/navbar.module';
     SharedDataAccessBrowseModule.forRoot({
       baseAPIUrl: environment.baseAPIUrl,
     }),
+    SharedUiToastrModule.forRoot(),
     NavbarModule,
   ],
   providers: [],
