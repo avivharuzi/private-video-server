@@ -1,0 +1,12 @@
+<div class="toast" [ngClass]="['toast--color-' + toastrColor]">
+  <div class="toast__content">
+    <shared-icon *ngIf="hasIcon && iconName" name="iconName"></shared-icon>
+    <p *ngIf="content">{{ content }}</p>
+    <ng-container *ngIf="templateContent">
+      <ng-container *ngTemplateOutlet="templateContent"></ng-container>
+    </ng-container>
+  </div>
+  <div class="toast__actions">
+    <shared-icon *ngIf="hasClose" name="close"></shared-icon>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+.toast {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-16);
+  color: var(--color-white);
+  border-radius: var(--border-radius-rectangle);
+  box-shadow: var(--box-shadow-md);
+
+  &__content {
+    display: flex;
+    align-items: center;
+
+    shared-icon {
+      margin-right: var(--space-8);
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    margin-left: var(--space-16);
+
+    shared-icon {
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  &--color-error {
+    background-color: var(--color-error);
+  }
+
+  &--color-success {
+    background-color: var(--color-success);
+  }
+}

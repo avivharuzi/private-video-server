@@ -21,6 +21,7 @@
     "shared-ui-input": "libs/shared/ui/input",
     "shared-ui-loader": "libs/shared/ui/loader",
     "shared-ui-modal": "libs/shared/ui/modal",
+    "shared-ui-toastr": "libs/shared/ui/toastr",
     "shared-ui-video-duration": "libs/shared/ui/video-duration",
     "shared-ui-video-player": "libs/shared/ui/video-player",
     "shared-ui-video-quality": "libs/shared/ui/video-quality",

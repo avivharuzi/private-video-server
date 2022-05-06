@@ -84,6 +84,9 @@
       "@private-video-server/shared/ui/modal": [
         "libs/shared/ui/modal/src/index.ts"
       ],
+      "@private-video-server/shared/ui/toastr": [
+        "libs/shared/ui/toastr/src/index.ts"
+      ],
       "@private-video-server/shared/ui/video-duration": [
         "libs/shared/ui/video-duration/src/index.ts"
       ],
