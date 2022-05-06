@@ -17,6 +17,7 @@
   --color-gray: #f3f4f6;
   --color-gray-hover: #e5e7eb;
   --color-error: #ef4444;
+  --color-success: #22c55e;
 
   /** Borders **/
   --border-radius-rectangle: 4px;
@@ -67,6 +68,7 @@
   --z-index-navbar: 20;
   --z-index-dropdown: 30;
   --z-index-modal: 40;
+  --z-index-toast: 50;
 
   /** Plyr **/
   --plyr-color-main: var(--color-primary);
