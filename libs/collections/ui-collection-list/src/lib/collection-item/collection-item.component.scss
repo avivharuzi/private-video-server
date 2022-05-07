@@ -16,7 +16,6 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: var(--space-16);
     text-transform: uppercase;
     background-color: var(--color-primary);
     border-radius: var(--border-radius-rectangle);
@@ -27,6 +26,11 @@
     &:hover {
       background-color: var(--color-primary-hover);
     }
+  }
+
+  &__title {
+    padding: var(--space-16);
+    text-align: center;
 
     h2 {
       color: var(--color-white);
