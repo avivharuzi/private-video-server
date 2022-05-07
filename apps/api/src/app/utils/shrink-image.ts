@@ -6,7 +6,7 @@ export const shrinkImage = async (
 ) => {
   return sharp(source)
     .jpeg({
-      quality: 80,
+      quality: 60,
     })
     .toFile(outputFilePath);
 };
