@@ -7,7 +7,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import * as del from 'del';
 import * as fastGlob from 'fast-glob';
 import * as mkdirp from 'mkdirp';
-import * as sharp from 'sharp';
 import { Repository } from 'typeorm';
 
 import { CollectionEntity } from '../collections';
@@ -18,6 +17,7 @@ import {
   CreateFullVideoPreviewOutput,
   generateUUID,
   getVideoInfo,
+  shrinkImage,
   takeScreenshots,
 } from '../utils';
 import { saveVideoCoverImage } from '../utils/save-video-cover-image';
@@ -176,11 +176,7 @@ export class VideosService {
         `${generateUUID()}-cover.jpg`
       );
 
-      await sharp(coverThumbnail.buffer)
-        .jpeg({
-          quality: 80,
-        })
-        .toFile(coverImageFilePath);
+      await shrinkImage(coverThumbnail.buffer, coverImageFilePath);
 
       newCoverThumbnail = coverImageFilePath;
     } catch (error) {
