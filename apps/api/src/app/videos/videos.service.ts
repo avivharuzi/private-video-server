@@ -7,6 +7,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import * as del from 'del';
 import * as fastGlob from 'fast-glob';
 import * as mkdirp from 'mkdirp';
+import * as sharp from 'sharp';
 import { Repository } from 'typeorm';
 
 import { CollectionEntity } from '../collections';
@@ -15,6 +16,7 @@ import {
   addCoverImageToVideoWithBuffer,
   createFullVideoPreview,
   CreateFullVideoPreviewOutput,
+  generateUUID,
   getVideoInfo,
   takeScreenshots,
 } from '../utils';
@@ -163,6 +165,43 @@ export class VideosService {
   ): Promise<VideoEntity> {
     const video = await this.findOne(id);
 
+    const videoFilePath = video.filePath;
+
+    const thumbnailsDirectory = path.join(video.mediaDirectory, 'thumbnails');
+
+    let newCoverThumbnail: string | null = null;
+    try {
+      const coverImageFilePath = path.join(
+        thumbnailsDirectory,
+        `${generateUUID()}-cover.jpg`
+      );
+
+      await sharp(coverThumbnail.buffer)
+        .jpeg({
+          quality: 80,
+        })
+        .toFile(coverImageFilePath);
+
+      newCoverThumbnail = coverImageFilePath;
+    } catch (error) {
+      Logger.error(error, `coverThumbnail, ${videoFilePath}`);
+    }
+
+    if (newCoverThumbnail) {
+      await this.updateOldCoverThumbnailWithNewOne(video, newCoverThumbnail);
+    }
+
+    return this.findOne(id);
+  }
+
+  async changeCoverThumbnailOfVideoFile(
+    id: string,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    coverThumbnail: Express.Multer.File
+  ): Promise<VideoEntity> {
+    const video = await this.findOne(id);
+
     const thumbnailsDirectory = path.join(video.mediaDirectory, 'thumbnails');
 
     const videoFilePath = video.filePath;
@@ -184,14 +223,7 @@ export class VideosService {
     }
 
     if (newCoverThumbnail) {
-      const oldCoverThumbnail = video.coverThumbnail;
-
-      video.coverThumbnail = newCoverThumbnail;
-      await this.videoRepository.save(video);
-
-      if (oldCoverThumbnail) {
-        await fs.promises.rm(oldCoverThumbnail);
-      }
+      await this.updateOldCoverThumbnailWithNewOne(video, newCoverThumbnail);
     }
 
     return this.findOne(id);
@@ -205,5 +237,19 @@ export class VideosService {
     }
 
     return fastGlob(patterns);
+  }
+
+  private async updateOldCoverThumbnailWithNewOne(
+    video: VideoEntity,
+    newCoverThumbnail: string
+  ): Promise<void> {
+    const oldCoverThumbnail = video.coverThumbnail;
+
+    video.coverThumbnail = newCoverThumbnail;
+    await this.videoRepository.save(video);
+
+    if (oldCoverThumbnail) {
+      await fs.promises.rm(oldCoverThumbnail);
+    }
   }
 }
