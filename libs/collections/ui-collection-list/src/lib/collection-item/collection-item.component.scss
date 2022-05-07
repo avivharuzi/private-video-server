@@ -16,12 +16,13 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: var(--space-64);
+    padding: var(--space-16);
     text-transform: uppercase;
     background-color: var(--color-primary);
     border-radius: var(--border-radius-rectangle);
     box-shadow: var(--box-shadow-lg);
     transition: background-color var(--transitions-speed-fast);
+    aspect-ratio: 16 / 9;
 
     &:hover {
       background-color: var(--color-primary-hover);

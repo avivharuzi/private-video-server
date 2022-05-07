@@ -13,4 +13,8 @@
   @include scss.mixins-media-from-xl {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  @include scss.mixins-media-from-2xl {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
