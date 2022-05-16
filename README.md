@@ -10,11 +10,11 @@ A very simple private video server.
 
 ## Table of Contents
 
-1. [Overview](#overview)
-2. [Tech](#tech)
-3. [Prerequisites](#prerequisites)
-4. [Configure Environment File](#configure-environment-file)
-5. [Commands](#commands)
+- [Overview](#overview)
+- [Tech](#tech)
+- [Prerequisites](#prerequisites)
+- [Configure Environment File](#configure-environment-file)
+- [Commands](#commands)
 
 ## Overview
 
