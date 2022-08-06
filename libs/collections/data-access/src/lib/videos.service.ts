@@ -7,7 +7,7 @@ import {
   CollectionsConfig,
   CollectionsConfigInjectionToken,
 } from './collections-config';
-import { Video } from './video';
+import { Video, VideoQueryParams } from './video';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +20,12 @@ export class VideosService {
     private readonly collectionsConfig: CollectionsConfig,
     private readonly httpClient: HttpClient
   ) {}
+
+  getAll(params: Partial<VideoQueryParams>): Observable<Video[]> {
+    return this.httpClient.get<Video[]>(this.baseAPIUrl, {
+      params,
+    });
+  }
 
   getDetail(id: string): Observable<Video> {
     return this.httpClient.get<Video>(`${this.baseAPIUrl}/${id}`);

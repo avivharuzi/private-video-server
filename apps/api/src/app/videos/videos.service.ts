@@ -9,6 +9,8 @@ import * as fastGlob from 'fast-glob';
 import * as mkdirp from 'mkdirp';
 import { Repository } from 'typeorm';
 
+import { VideoQueryParams } from '@private-video-server/collections/data-access';
+
 import { CollectionEntity } from '../collections';
 import { EnvironmentVariables } from '../environment-variables';
 import {
@@ -31,6 +33,20 @@ export class VideosService {
     private readonly videoRepository: Repository<VideoEntity>,
     private readonly configService: ConfigService<EnvironmentVariables>
   ) {}
+
+  async findAll({
+    searchTerm,
+  }: Partial<VideoQueryParams>): Promise<VideoEntity[]> {
+    let queryBuilder = this.videoRepository.createQueryBuilder().select();
+
+    if (searchTerm) {
+      queryBuilder = queryBuilder.where('title LIKE :searchTerm', {
+        searchTerm: `%${searchTerm}%`,
+      });
+    }
+
+    return queryBuilder.limit(20).getMany();
+  }
 
   async findOne(id: string): Promise<VideoEntity> {
     const video = await this.videoRepository.findOne({

@@ -5,16 +5,24 @@ import {
   Get,
   Param,
   Post,
+  Query,
   UploadedFiles,
   UseInterceptors,
 } from '@nestjs/common';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
+
+import { VideoQueryParams } from '@private-video-server/collections/data-access';
 
 import { VideosService } from './videos.service';
 
 @Controller('videos')
 export class VideosController {
   constructor(private readonly videosService: VideosService) {}
+
+  @Get()
+  findAll(@Query() query: Partial<VideoQueryParams>) {
+    return this.videosService.findAll(query);
+  }
 
   @Get(':id')
   findOne(@Param('id') id: string) {

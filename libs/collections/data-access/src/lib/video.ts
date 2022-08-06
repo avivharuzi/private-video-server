@@ -1,3 +1,4 @@
+import { Collection } from './collection';
 import { VideoInfo } from './video-info';
 
 export interface Video {
@@ -11,4 +12,9 @@ export interface Video {
   thumbnails: string[];
   defaultPreview: string;
   previews: string[];
+  collection: Collection;
+}
+
+export interface VideoQueryParams {
+  searchTerm: string;
 }
