@@ -3,7 +3,12 @@
 <div class="video-item">
   <div
     class="video-item__img-container"
-    [routerLink]="['videos', video.id]"
+    [routerLink]="[
+      video.collection && video.collection.id
+        ? '/collections/' + video.collection.id + '/videos'
+        : 'videos',
+      video.id
+    ]"
     (mouseenter)="hasVideoPreview = true"
     (mouseleave)="hasVideoPreview = false"
   >

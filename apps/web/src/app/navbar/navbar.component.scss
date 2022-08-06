@@ -7,12 +7,20 @@
 
   &__header {
     display: flex;
+    flex-flow: column;
+    gap: var(--space-16);
     align-items: center;
-    justify-content: space-between;
-    height: 60px;
+    justify-content: center;
+    height: 160px;
     padding: 0 var(--space-32);
     background-color: var(--color-white);
     box-shadow: var(--box-shadow-sm);
+
+    @include scss.mixins-media-from-lg {
+      flex-flow: row;
+      justify-content: space-between;
+      height: 60px;
+    }
 
     &__title {
       display: flex;
@@ -37,7 +45,11 @@
       gap: var(--space-16);
       align-items: center;
       justify-content: center;
-      width: 50%;
+      width: 100%;
+
+      @include scss.mixins-media-from-lg {
+        width: 50%;
+      }
 
       collections-search-video-list {
         position: absolute;
