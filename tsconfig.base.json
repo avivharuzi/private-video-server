@@ -42,6 +42,9 @@
       "@private-video-server/collections/feature-list": [
         "libs/collections/feature-list/src/index.ts"
       ],
+      "@private-video-server/collections/feature-search": [
+        "libs/collections/feature-search/src/index.ts"
+      ],
       "@private-video-server/collections/feature-video-detail": [
         "libs/collections/feature-video-detail/src/index.ts"
       ],

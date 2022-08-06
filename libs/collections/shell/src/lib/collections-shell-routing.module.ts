@@ -11,6 +11,24 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'search',
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: '/collections',
+      },
+      {
+        path: ':id',
+        loadChildren: () =>
+          import('@private-video-server/collections/feature-search').then(
+            ({ CollectionsFeatureSearchModule }) =>
+              CollectionsFeatureSearchModule
+          ),
+      },
+    ],
+  },
+  {
     path: ':id',
     loadChildren: () =>
       import('@private-video-server/collections/feature-detail').then(

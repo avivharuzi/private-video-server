@@ -7,6 +7,7 @@
     "collections-feature-detail": "libs/collections/feature-detail",
     "collections-feature-form": "libs/collections/feature-form",
     "collections-feature-list": "libs/collections/feature-list",
+    "collections-feature-search": "libs/collections/feature-search",
     "collections-feature-video-detail": "libs/collections/feature-video-detail",
     "collections-shell": "libs/collections/shell",
     "collections-ui-collection-list": "libs/collections/ui-collection-list",
