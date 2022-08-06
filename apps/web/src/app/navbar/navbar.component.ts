@@ -39,7 +39,7 @@ export class NavbarComponent {
     debounceTime(300),
     distinctUntilChanged(),
     switchMap((searchTerm) => {
-      if (searchTerm.trim() === '') {
+      if (searchTerm === '') {
         return of([]);
       }
 
@@ -59,7 +59,7 @@ export class NavbarComponent {
   ) {}
 
   get searchInputElementValue(): string {
-    return this.searchInputElement.nativeElement.value;
+    return this.searchInputElement.nativeElement.value.trim();
   }
 
   onNewCollection(event: MouseEvent): void {
@@ -83,9 +83,11 @@ export class NavbarComponent {
   }
 
   onSearchClick(): void {
-    const value = this.searchInputElementValue.trim();
+    const value = this.searchInputElementValue;
 
     if (value === '') {
+      this.router.navigate(['/']).then();
+
       return;
     }
 
