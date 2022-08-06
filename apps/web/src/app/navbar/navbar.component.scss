@@ -31,6 +31,20 @@
       }
     }
 
+    &__search {
+      position: relative;
+      display: flex;
+      gap: var(--space-16);
+      align-items: center;
+      justify-content: center;
+      width: 50%;
+
+      collections-search-video-list {
+        position: absolute;
+        top: 40px;
+      }
+    }
+
     &__menu {
       display: flex;
       gap: var(--space-8);

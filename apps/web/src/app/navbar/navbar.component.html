@@ -4,6 +4,32 @@
       <shared-icon name="video-camera"></shared-icon>
       <h1>Private Video Server</h1>
     </a>
+    <div
+      class="navbar__header__search"
+      (sharedClickOutside)="isSearchVideosVisible = false"
+    >
+      <input
+        #searchInputElement
+        type="text"
+        placeholder="Search"
+        sharedInput
+        (focusin)="isSearchVideosVisible = true"
+        (input)="onSearchInput()"
+      />
+      <button
+        iconName="search"
+        shape="circle"
+        sharedButton
+        variant="contained"
+      ></button>
+      <ng-container *ngIf="searchVideos$ | async as searchVideos">
+        <ng-container *ngIf="isSearchVideosVisible && searchVideos.length > 0">
+          <collections-search-video-list
+            [videos]="searchVideos"
+          ></collections-search-video-list>
+        </ng-container>
+      </ng-container>
+    </div>
     <div class="navbar__header__menu">
       <button
         iconName="add"
