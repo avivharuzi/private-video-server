@@ -10,6 +10,7 @@
     "collections-feature-video-detail": "libs/collections/feature-video-detail",
     "collections-shell": "libs/collections/shell",
     "collections-ui-collection-list": "libs/collections/ui-collection-list",
+    "collections-ui-search-video-list": "libs/collections/ui-search-video-list",
     "collections-ui-stream": "libs/collections/ui-stream",
     "collections-ui-video-list": "libs/collections/ui-video-list",
     "shared-data-access-auth": "libs/shared/data-access-auth",

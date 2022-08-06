@@ -1,0 +1,17 @@
+<div class="search-video-list">
+  <a
+    *ngFor="let video of videos"
+    class="search-video-list__item"
+    [routerLink]="['/collections', video.collection.id, 'videos', video.id]"
+  >
+    <img
+      [alt]="video.title"
+      [src]="
+        video.coverThumbnail || video.defaultThumbnail | stream: 'thumbnails'
+      "
+    />
+    <p [title]="video.title">
+      {{ video.title }} <span>({{ video.collection.name }})</span>
+    </p>
+  </a>
+</div>
