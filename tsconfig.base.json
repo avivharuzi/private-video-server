@@ -75,6 +75,9 @@
       "@private-video-server/shared/ui/button": [
         "libs/shared/ui/button/src/index.ts"
       ],
+      "@private-video-server/shared/ui/click-outside": [
+        "libs/shared/ui/click-outside/src/index.ts"
+      ],
       "@private-video-server/shared/ui/icon": [
         "libs/shared/ui/icon/src/index.ts"
       ],

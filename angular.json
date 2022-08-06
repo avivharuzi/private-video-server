@@ -18,6 +18,7 @@
     "shared-feature-browse": "libs/shared/feature-browse",
     "shared-ui-action-menu": "libs/shared/ui/action-menu",
     "shared-ui-button": "libs/shared/ui/button",
+    "shared-ui-click-outside": "libs/shared/ui/click-outside",
     "shared-ui-icon": "libs/shared/ui/icon",
     "shared-ui-input": "libs/shared/ui/input",
     "shared-ui-loader": "libs/shared/ui/loader",
