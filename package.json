@@ -22,7 +22,7 @@
     "serve:prod-server": "pm2 start dist/apps/api/main.js --name private-video-server",
     "stop:prod-server": "pm2 stop private-video-server",
     "build-and-serve:prod-server": "(npm run stop:prod-server || true) && npm run build:prod-server && npm run serve:prod-server",
-    "clean-resources": "rm -rf .angular dist media/* node_modules/.cache/* db"
+    "clean-resources": "rm -rf dist media/* node_modules/.cache/* db"
   },
   "private": true,
   "dependencies": {
