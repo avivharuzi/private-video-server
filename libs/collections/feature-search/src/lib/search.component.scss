@@ -1,0 +1,33 @@
+@use 'libs/shared/ui/scss';
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-64);
+
+  h1 {
+    display: inline-flex;
+    font-size: var(--font-size-h4);
+    text-align: center;
+    text-transform: uppercase;
+
+    span {
+      border-bottom: var(--border-size-md) solid var(--color-primary);
+    }
+
+    @include scss.mixins-media-from-xl {
+      font-size: var(--font-size-h2);
+
+      span {
+        border-bottom: var(--border-size-lg) solid var(--color-primary);
+      }
+    }
+  }
+}
+
+.no-videos {
+  display: flex;
+  justify-content: center;
+  font-size: var(--font-size-h4);
+}

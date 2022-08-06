@@ -36,6 +36,7 @@ export class VideosService {
 
   async findAll({
     searchTerm,
+    limit,
   }: Partial<VideoQueryParams>): Promise<VideoEntity[]> {
     let queryBuilder = this.videoRepository
       .createQueryBuilder('videos')
@@ -47,10 +48,16 @@ export class VideosService {
       });
     }
 
-    return queryBuilder
-      .leftJoinAndSelect('videos.collection', 'collection')
-      .limit(20)
-      .getMany();
+    queryBuilder = queryBuilder.leftJoinAndSelect(
+      'videos.collection',
+      'collection'
+    );
+
+    if (limit && !isNaN(limit)) {
+      queryBuilder = queryBuilder.limit(limit);
+    }
+
+    return queryBuilder.getMany();
   }
 
   async findOne(id: string): Promise<VideoEntity> {

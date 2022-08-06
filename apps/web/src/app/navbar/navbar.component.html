@@ -15,12 +15,14 @@
         sharedInput
         (focusin)="isSearchVideosVisible = true"
         (input)="onSearchInput()"
+        (keydown.enter)="onSearchClick()"
       />
       <button
         iconName="search"
         shape="circle"
         sharedButton
         variant="contained"
+        (click)="onSearchClick()"
       ></button>
       <ng-container *ngIf="searchVideos$ | async as searchVideos">
         <ng-container *ngIf="isSearchVideosVisible && searchVideos.length > 0">

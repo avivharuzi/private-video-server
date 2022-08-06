@@ -19,7 +19,7 @@ const routes: Routes = [
         redirectTo: '/collections',
       },
       {
-        path: ':id',
+        path: ':searchTerm',
         loadChildren: () =>
           import('@private-video-server/collections/feature-search').then(
             ({ CollectionsFeatureSearchModule }) =>

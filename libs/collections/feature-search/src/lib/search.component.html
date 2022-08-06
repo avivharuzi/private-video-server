@@ -1,1 +1,13 @@
-<p>search works!</p>
+<ng-container *ngIf="videos$ | async as videos">
+  <header>
+    <h1>
+      Search Results:&nbsp;<span>{{ searchTerm }}</span>
+    </h1>
+  </header>
+  <ng-container *ngIf="videos.length > 0; else noVideos">
+    <collections-video-list [videos]="videos"></collections-video-list>
+  </ng-container>
+  <ng-template #noVideos>
+    <p class="no-videos">No Videos Were Found</p>
+  </ng-template>
+</ng-container>

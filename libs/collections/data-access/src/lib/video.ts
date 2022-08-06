@@ -17,4 +17,5 @@ export interface Video {
 
 export interface VideoQueryParams {
   searchTerm: string;
+  limit: number;
 }

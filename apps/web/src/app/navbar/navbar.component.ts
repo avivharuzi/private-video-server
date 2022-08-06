@@ -4,6 +4,7 @@ import {
   ElementRef,
   ViewChild,
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 import {
   BehaviorSubject,
@@ -44,6 +45,7 @@ export class NavbarComponent {
 
       return this.videosService.getAll({
         searchTerm,
+        limit: 20,
       });
     })
   );
@@ -52,8 +54,13 @@ export class NavbarComponent {
 
   constructor(
     private readonly authService: AuthService,
-    private readonly videosService: VideosService
+    private readonly videosService: VideosService,
+    private readonly router: Router
   ) {}
+
+  get searchInputElementValue(): string {
+    return this.searchInputElement.nativeElement.value;
+  }
 
   onNewCollection(event: MouseEvent): void {
     event.stopPropagation();
@@ -70,6 +77,20 @@ export class NavbarComponent {
   }
 
   onSearchInput(): void {
-    this.searchValueSubject.next(this.searchInputElement.nativeElement.value);
+    this.isSearchVideosVisible = true;
+
+    this.searchValueSubject.next(this.searchInputElementValue);
+  }
+
+  onSearchClick(): void {
+    const value = this.searchInputElementValue.trim();
+
+    if (value === '') {
+      return;
+    }
+
+    this.router.navigate(['/collections', 'search', value]).then(() => {
+      this.isSearchVideosVisible = false;
+    });
   }
 }
