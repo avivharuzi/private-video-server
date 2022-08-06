@@ -37,7 +37,9 @@ export class VideosService {
   async findAll({
     searchTerm,
   }: Partial<VideoQueryParams>): Promise<VideoEntity[]> {
-    let queryBuilder = this.videoRepository.createQueryBuilder().select();
+    let queryBuilder = this.videoRepository
+      .createQueryBuilder('videos')
+      .select();
 
     if (searchTerm) {
       queryBuilder = queryBuilder.where('title LIKE :searchTerm', {
@@ -45,7 +47,10 @@ export class VideosService {
       });
     }
 
-    return queryBuilder.limit(20).getMany();
+    return queryBuilder
+      .leftJoinAndSelect('videos.collection', 'collection')
+      .limit(20)
+      .getMany();
   }
 
   async findOne(id: string): Promise<VideoEntity> {
