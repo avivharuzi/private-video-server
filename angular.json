@@ -28,6 +28,7 @@
     "shared-ui-video-duration": "libs/shared/ui/video-duration",
     "shared-ui-video-player": "libs/shared/ui/video-player",
     "shared-ui-video-quality": "libs/shared/ui/video-quality",
+    "shared-util-helpers": "libs/shared/util-helpers",
     "shared-util-video": "libs/shared/util-video",
     "web": "apps/web"
   }
