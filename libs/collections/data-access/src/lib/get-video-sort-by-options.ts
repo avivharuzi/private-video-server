@@ -3,11 +3,11 @@ import { VideoSortBy, VideoSortByOption } from './video';
 export const getVideoSortByOptions = (): VideoSortByOption[] => [
   {
     label: 'New',
-    value: VideoSortBy.CreationDateDesc,
+    value: VideoSortBy.CreatedAtDesc,
   },
   {
     label: 'Old',
-    value: VideoSortBy.CreationAtAsc,
+    value: VideoSortBy.CreatedAtAsc,
   },
   {
     label: 'A-Z',

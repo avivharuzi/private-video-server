@@ -25,8 +25,8 @@ export interface VideoQueryParams {
 export enum VideoSortBy {
   TitleAsc = 'title-asc',
   TitleDesc = 'title-desc',
-  CreationAtAsc = 'creation-date-asc',
-  CreationDateDesc = 'creation-date-desc',
+  CreatedAtAsc = 'created-at-asc',
+  CreatedAtDesc = 'created-at-desc',
 }
 
 export interface VideoSortByOption {

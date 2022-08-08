@@ -44,8 +44,10 @@ export class VideoListComponent implements OnDestroy {
 
   videoListFilterForm = this.formBuilder.group({
     searchTerm: this.formBuilder.control(''),
-    sortBy: this.formBuilder.control(VideoSortBy.CreationDateDesc),
+    sortBy: this.formBuilder.control(this.getVideoListSortByInitValue()),
   });
+
+  private readonly videoListSortByStorageKey = 'video-list-sort-by';
 
   private _videos: Video[] = [];
 
@@ -70,6 +72,21 @@ export class VideoListComponent implements OnDestroy {
     );
   }
 
+  private getVideoListSortByInitValue(): VideoSortBy {
+    const sortByFromStorage = localStorage.getItem(
+      this.videoListSortByStorageKey
+    );
+
+    if (
+      sortByFromStorage &&
+      Object.values(VideoSortBy).includes(sortByFromStorage as VideoSortBy)
+    ) {
+      return sortByFromStorage as VideoSortBy;
+    }
+
+    return VideoSortBy.CreatedAtDesc;
+  }
+
   private listenToVideoListFilterFormValueChanges(): void {
     this.videoListFilterForm.valueChanges
       .pipe(
@@ -85,6 +102,7 @@ export class VideoListComponent implements OnDestroy {
 
   private updateVideosByFilter(): void {
     const { searchTerm, sortBy } = this.videoListFilterForm.value;
+    localStorage.setItem(this.videoListSortByStorageKey, sortBy);
     const searchTermTrim = searchTerm.trim();
 
     let videos: Video[];
@@ -99,14 +117,14 @@ export class VideoListComponent implements OnDestroy {
     }
 
     switch (sortBy) {
-      case VideoSortBy.CreationAtAsc:
+      case VideoSortBy.CreatedAtAsc:
         videos = videos.sort(
           (a, b) =>
             new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
         );
 
         break;
-      case VideoSortBy.CreationDateDesc:
+      case VideoSortBy.CreatedAtDesc:
         videos = videos.sort(
           (a, b) =>
             new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
