@@ -21,3 +21,15 @@ export interface VideoQueryParams {
   searchTerm: string;
   limit: number;
 }
+
+export enum VideoSortBy {
+  TitleAsc = 'title-asc',
+  TitleDesc = 'title-desc',
+  CreationAtAsc = 'creation-date-asc',
+  CreationDateDesc = 'creation-date-desc',
+}
+
+export interface VideoSortByOption {
+  label: string;
+  value: VideoSortBy;
+}

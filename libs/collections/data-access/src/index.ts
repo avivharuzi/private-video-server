@@ -5,3 +5,4 @@ export * from './lib/collections.service';
 export * from './lib/video';
 export * from './lib/video-info';
 export * from './lib/videos.service';
+export * from './lib/get-video-sort-by-options';
