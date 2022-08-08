@@ -1,3 +1,26 @@
+<form class="video-list-filter" [formGroup]="videoListFilterForm">
+  <div class="video-list-filter__wrapper">
+    <input
+      type="text"
+      formControlName="searchTerm"
+      placeholder="Search"
+      sharedInput
+    />
+    <div class="video-list-filter__sort-by">
+      <select formControlName="sortBy" sharedInput>
+        <option
+          *ngFor="let videoSortByOption of videoSortByOptions"
+          [value]="videoSortByOption.value"
+        >
+          {{ videoSortByOption.label }}
+        </option>
+      </select>
+    </div>
+    <p class="video-list-filter__video-info">
+      {{ videos.length }} Video{{ videos.length > 0 ? 's' : '' }}
+    </p>
+  </div>
+</form>
 <div class="video-list">
   <collections-video-item
     *ngFor="let video of videos"
