@@ -13,6 +13,8 @@ export interface Video {
   defaultPreview: string;
   previews: string[];
   collection: Collection;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface VideoQueryParams {
