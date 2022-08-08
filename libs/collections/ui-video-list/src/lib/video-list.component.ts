@@ -22,6 +22,8 @@ import {
 } from '@private-video-server/collections/data-access';
 import { deepClone } from '@private-video-server/shared/util-helpers';
 
+import { VIDEO_LIST_SORT_BY_STORAGE_KEY } from './video-list-sort-by-storage-key';
+
 @Component({
   selector: 'collections-video-list',
   templateUrl: './video-list.component.html',
@@ -46,8 +48,6 @@ export class VideoListComponent implements OnDestroy {
     searchTerm: this.formBuilder.control(''),
     sortBy: this.formBuilder.control(this.getVideoListSortByInitValue()),
   });
-
-  private readonly videoListSortByStorageKey = 'video-list-sort-by';
 
   private _videos: Video[] = [];
 
@@ -74,7 +74,7 @@ export class VideoListComponent implements OnDestroy {
 
   private getVideoListSortByInitValue(): VideoSortBy {
     const sortByFromStorage = localStorage.getItem(
-      this.videoListSortByStorageKey
+      VIDEO_LIST_SORT_BY_STORAGE_KEY
     );
 
     if (
@@ -102,7 +102,7 @@ export class VideoListComponent implements OnDestroy {
 
   private updateVideosByFilter(): void {
     const { searchTerm, sortBy } = this.videoListFilterForm.value;
-    localStorage.setItem(this.videoListSortByStorageKey, sortBy);
+    localStorage.setItem(VIDEO_LIST_SORT_BY_STORAGE_KEY, sortBy);
     const searchTermTrim = searchTerm.trim();
 
     let videos: Video[];
