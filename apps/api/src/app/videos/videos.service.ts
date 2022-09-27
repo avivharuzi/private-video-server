@@ -18,7 +18,9 @@ import {
   createFullVideoPreview,
   CreateFullVideoPreviewOutput,
   generateUUID,
+  getMediaInfoFormatted,
   getVideoInfo,
+  MediaInfoFormatted,
   shrinkImage,
   takeScreenshots,
 } from '../utils';
@@ -253,7 +255,13 @@ export class VideosService {
     return this.findOne(id);
   }
 
-  async getFilesPaths(directory: string): Promise<string[]> {
+  async mediaInfo(id: string): Promise<MediaInfoFormatted> {
+    const video = await this.findOne(id);
+
+    return getMediaInfoFormatted(video.filePath);
+  }
+
+  private async getFilesPaths(directory: string): Promise<string[]> {
     const patterns: string[] = [];
 
     for (const extension of VIDEO_EXTENSIONS) {

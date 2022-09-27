@@ -56,4 +56,9 @@ export class VideosController {
 
     return this.videosService.changeCoverThumbnail(id, coverThumbnail);
   }
+
+  @Get(':id/media-info')
+  mediaInfo(@Param('id') id: string) {
+    return this.videosService.mediaInfo(id);
+  }
 }
