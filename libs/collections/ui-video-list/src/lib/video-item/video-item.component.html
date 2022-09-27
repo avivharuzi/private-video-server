@@ -63,6 +63,20 @@
 
         <div sharedActionMenuDropdown>
           <shared-action-menu-list>
+            <a
+              [routerLink]="[
+                video.collection && video.collection.id
+                  ? '/collections/' + video.collection.id + '/videos'
+                  : 'videos',
+                video.id,
+                'media-info'
+              ]"
+              (click)="sharedActionMenu.close()"
+            >
+              <shared-action-menu-item iconName="info"
+                >Media Info</shared-action-menu-item
+              >
+            </a>
             <div (click)="sharedActionMenu.close()">
               <label [for]="video.id + '-cover-thumbnail'">
                 <shared-action-menu-item iconName="image">

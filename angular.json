@@ -9,6 +9,7 @@
     "collections-feature-list": "libs/collections/feature-list",
     "collections-feature-search": "libs/collections/feature-search",
     "collections-feature-video-detail": "libs/collections/feature-video-detail",
+    "collections-feature-video-media-info": "libs/collections/feature-video-media-info",
     "collections-shell": "libs/collections/shell",
     "collections-ui-collection-list": "libs/collections/ui-collection-list",
     "collections-ui-search-video-list": "libs/collections/ui-search-video-list",

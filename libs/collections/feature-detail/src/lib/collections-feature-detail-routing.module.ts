@@ -21,6 +21,16 @@ const routes: Routes = [
               CollectionsFeatureVideoDetailModule
           ),
       },
+      {
+        path: 'videos/:videoId/media-info',
+        loadChildren: () =>
+          import(
+            '@private-video-server/collections/feature-video-media-info'
+          ).then(
+            ({ CollectionsFeatureVideoMediaInfoModule }) =>
+              CollectionsFeatureVideoMediaInfoModule
+          ),
+      },
     ],
   },
 ];

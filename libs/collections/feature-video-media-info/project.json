@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/collections/feature-video-media-info",
+  "sourceRoot": "libs/collections/feature-video-media-info/src",
+  "prefix": "collections",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/collections/feature-video-media-info"],
+      "options": {
+        "jestConfig": "libs/collections/feature-video-media-info/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/collections/feature-video-media-info/src/**/*.ts",
+          "libs/collections/feature-video-media-info/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:collections", "type:feature"]
+}
