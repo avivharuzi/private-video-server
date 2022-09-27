@@ -1,0 +1,26 @@
+.media-info-item {
+  display: flex;
+  flex-flow: column;
+  gap: var(--space-16);
+
+  h3 {
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-h3);
+  }
+
+  &__details {
+    display: flex;
+    flex-flow: column;
+    gap: var(--space-8);
+    font-size: var(--font-size-h5);
+
+    &__key {
+      color: var(--color-black-50);
+      font-weight: var(--font-weight-medium);
+    }
+
+    &__value {
+      font-weight: var(--font-weight-bold);
+    }
+  }
+}

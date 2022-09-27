@@ -1,0 +1,15 @@
+.media-info {
+  width: 50%;
+  height: 85%;
+  margin: auto;
+  padding: var(--space-32);
+  overflow: auto;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-rectangle);
+}
+
+.media-info-list {
+  display: flex;
+  flex-flow: column;
+  gap: var(--space-32);
+}

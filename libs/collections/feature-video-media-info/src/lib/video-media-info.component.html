@@ -1,0 +1,13 @@
+<ng-container *ngIf="mediaInfo$ | async as mediaInfo">
+  <shared-modal (closed)="onModalClosed()">
+    <div class="media-info">
+      <div class="media-info-list">
+        <collections-media-info-item
+          *ngFor="let mediaInfoItem of mediaInfo"
+          [mediaInfoItem]="mediaInfoItem"
+        >
+        </collections-media-info-item>
+      </div>
+    </div>
+  </shared-modal>
+</ng-container>

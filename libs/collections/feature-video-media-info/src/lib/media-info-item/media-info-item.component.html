@@ -1,0 +1,13 @@
+<div class="media-info-item">
+  <h3>{{ mediaInfoItem.name }}</h3>
+  <div class="media-info-item__details">
+    <div *ngFor="let mediaInfoItemDetails of mediaInfoItem.details">
+      <span class="media-info-item__details__key"
+        >{{ mediaInfoItemDetails.key }}:
+      </span>
+      <span class="media-info-item__details__value">{{
+        mediaInfoItemDetails.value
+      }}</span>
+    </div>
+  </div>
+</div>
