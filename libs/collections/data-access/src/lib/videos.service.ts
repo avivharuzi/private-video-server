@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 import {
   CollectionsConfig,
   CollectionsConfigInjectionToken,
 } from './collections-config';
+import { MediaInfo, MediaInfoDetail, MediaInfoFormatted } from './media-info';
 import { Video, VideoQueryParams } from './video';
 
 @Injectable({
@@ -43,5 +44,31 @@ export class VideosService {
       `${this.baseAPIUrl}/${id}/change-cover-thumbnail`,
       formData
     );
+  }
+
+  getMediaInfo(id: string): Observable<MediaInfo> {
+    return this.httpClient
+      .get<MediaInfoFormatted>(`${this.baseAPIUrl}/${id}/media-info`)
+      .pipe(
+        map((mediaInfoFormatted) => {
+          return Object.entries(mediaInfoFormatted).map(
+            ([name, detailsBefore]) => {
+              const details: MediaInfoDetail[] = Object.entries(
+                detailsBefore
+              ).map(([key, value]) => {
+                return {
+                  key,
+                  value,
+                };
+              });
+
+              return {
+                name,
+                details,
+              };
+            }
+          );
+        })
+      );
   }
 }
