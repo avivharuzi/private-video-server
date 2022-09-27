@@ -4,6 +4,7 @@ export * from './create-full-video-preview';
 export * from './create-video-preview';
 export * from './generate-uuid';
 export * from './get-file-number';
+export * from './get-media-info';
 export * from './get-video-info';
 export * from './is-file-exists';
 export * from './shrink-image';
