@@ -15,6 +15,15 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'video-hls/:videoId',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('@private-video-server/collections/feature-video-hls').then(
+        ({ CollectionsFeatureVideoHlsModule }) =>
+          CollectionsFeatureVideoHlsModule
+      ),
+  },
+  {
     path: '',
     component: MainLayoutComponent,
     children: [

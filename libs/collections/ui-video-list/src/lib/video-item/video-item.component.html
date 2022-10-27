@@ -100,6 +100,11 @@
                 >Direct Stream</shared-action-menu-item
               >
             </a>
+            <a target="_blank" [href]="'/video-hls/' + video.id">
+              <shared-action-menu-item iconName="link"
+                >HLS Stream</shared-action-menu-item
+              >
+            </a>
             <a
               target="_blank"
               [href]="video.id | stream: 'video-download'"
