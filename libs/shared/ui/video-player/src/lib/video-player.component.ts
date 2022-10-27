@@ -8,10 +8,11 @@ import {
   ViewChild,
 } from '@angular/core';
 
-import Hls from 'hls.js';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import Plyr from 'plyr';
+
+declare let Hls: any;
 
 @Component({
   selector: 'shared-video-player',

@@ -21,7 +21,7 @@
           "apps/web/src/robots.txt"
         ],
         "styles": ["apps/web/src/styles.scss"],
-        "scripts": [],
+        "scripts": ["node_modules/hls.js/dist/hls.js"],
         "serviceWorker": true,
         "ngswConfigPath": "apps/web/ngsw-config.json"
       },
