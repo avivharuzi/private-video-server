@@ -10,7 +10,7 @@ import { StreamService } from './stream.service';
 @Controller('stream')
 export class StreamController {
   constructor(
-    private readonly videoService: VideosService,
+    private readonly videosService: VideosService,
     private readonly streamService: StreamService
   ) {}
 
@@ -41,7 +41,7 @@ export class StreamController {
     @Headers() headers: Record<string, string>,
     @Res() res: Response
   ) {
-    const video = await this.videoService.findOne(id);
+    const video = await this.videosService.findOne(id);
     return this.streamService.video(video.filePath, res, {
       fileSize: video.info.size,
       headers,
@@ -50,7 +50,7 @@ export class StreamController {
 
   @Get('video-download/:id')
   async videoDownload(@Param('id') id: string, @Res() res: Response) {
-    const video = await this.videoService.findOne(id);
+    const video = await this.videosService.findOne(id);
     return res.download(video.filePath);
   }
 }
