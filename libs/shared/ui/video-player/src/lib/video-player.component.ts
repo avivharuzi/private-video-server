@@ -12,6 +12,7 @@ import {
 // @ts-ignore
 import Plyr from 'plyr';
 
+// eslint-disable-next-line
 declare let Hls: any;
 
 @Component({
@@ -33,6 +34,9 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
 
   plyr?: Plyr;
 
+  // eslint-disable-next-line
+  hls?: any;
+
   ngAfterViewInit(): void {
     this.plyr = new Plyr(this.videoElementRef.nativeElement, {
       iconUrl: '/assets/svg/plyr.svg',
@@ -47,6 +51,10 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
     if (this.plyr) {
       this.plyr.destroy();
     }
+
+    if (this.isHLS && this.hls) {
+      this.hls.destroy();
+    }
   }
 
   private loadHLS(): void {
@@ -55,9 +63,9 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
     if (!Hls.isSupported()) {
       video.src = this.src;
     } else {
-      const hls = new Hls();
-      hls.loadSource(this.src);
-      hls.attachMedia(video);
+      this.hls = new Hls();
+      this.hls.loadSource(this.src);
+      this.hls.attachMedia(video);
     }
   }
 }
