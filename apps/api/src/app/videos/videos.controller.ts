@@ -61,4 +61,9 @@ export class VideosController {
   mediaInfo(@Param('id') id: string) {
     return this.videosService.mediaInfo(id);
   }
+
+  @Post(':id/hls')
+  async createHLS(@Param('id') id: string) {
+    return this.videosService.createHLS(id);
+  }
 }

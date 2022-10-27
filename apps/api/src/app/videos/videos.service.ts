@@ -9,7 +9,10 @@ import * as fastGlob from 'fast-glob';
 import * as mkdirp from 'mkdirp';
 import { Repository } from 'typeorm';
 
-import { VideoQueryParams } from '@private-video-server/collections/data-access';
+import {
+  VideoHLS,
+  VideoQueryParams,
+} from '@private-video-server/collections/data-access';
 
 import { CollectionEntity } from '../collections';
 import { EnvironmentVariables } from '../environment-variables';
@@ -17,10 +20,12 @@ import {
   addCoverImageToVideoWithBuffer,
   createFullVideoPreview,
   CreateFullVideoPreviewOutput,
+  createHLSStream,
   generateUUID,
   getMediaInfoFormatted,
   getVideoInfo,
   MediaInfoFormatted,
+  recreateDirectory,
   shrinkImage,
   takeScreenshots,
 } from '../utils';
@@ -269,6 +274,26 @@ export class VideosService {
     }
 
     return fastGlob(patterns);
+  }
+
+  async createHLS(id: string): Promise<VideoHLS> {
+    const video = await this.findOne(id);
+
+    const hlsDirectory = path.join(
+      this.configService.get('API_MEDIA_DIRECTORY') || '',
+      'hls'
+    );
+
+    await recreateDirectory(hlsDirectory);
+
+    const src = await createHLSStream(video.filePath, {
+      name: video.id,
+      targetDir: hlsDirectory,
+    });
+
+    return {
+      src,
+    };
   }
 
   private async updateOldCoverThumbnailWithNewOne(

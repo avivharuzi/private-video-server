@@ -33,3 +33,7 @@ export interface VideoSortByOption {
   label: string;
   value: VideoSortBy;
 }
+
+export interface VideoHLS {
+  src: string;
+}
