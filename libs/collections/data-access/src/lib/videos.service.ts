@@ -8,7 +8,7 @@ import {
   CollectionsConfigInjectionToken,
 } from './collections-config';
 import { MediaInfo, MediaInfoDetail, MediaInfoFormatted } from './media-info';
-import { Video, VideoQueryParams } from './video';
+import { Video, VideoHLS, VideoQueryParams } from './video';
 
 @Injectable({
   providedIn: 'root',
@@ -70,5 +70,9 @@ export class VideosService {
           );
         })
       );
+  }
+
+  createHLS(id: string): Observable<VideoHLS> {
+    return this.httpClient.post<VideoHLS>(`${this.baseAPIUrl}/${id}/hls`, {});
   }
 }
