@@ -5,6 +5,6 @@
   [attr.data-poster]="poster"
   [autoplay]="autoplay"
 >
-  <source type="video/mp4" [src]="src" />
+  <source *ngIf="!isHLS" type="video/mp4" [src]="src" />
   Your browser does not support the video tag.
 </video>

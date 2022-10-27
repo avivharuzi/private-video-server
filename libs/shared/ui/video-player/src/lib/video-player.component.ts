@@ -8,6 +8,7 @@ import {
   ViewChild,
 } from '@angular/core';
 
+import Hls from 'hls.js';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import Plyr from 'plyr';
@@ -25,6 +26,8 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
 
   @Input() autoplay = false;
 
+  @Input() isHLS = false;
+
   @ViewChild('videoElement') videoElementRef!: ElementRef;
 
   plyr?: Plyr;
@@ -33,11 +36,27 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
     this.plyr = new Plyr(this.videoElementRef.nativeElement, {
       iconUrl: '/assets/svg/plyr.svg',
     });
+
+    if (this.isHLS) {
+      this.loadHLS();
+    }
   }
 
   ngOnDestroy(): void {
     if (this.plyr) {
       this.plyr.destroy();
+    }
+  }
+
+  private loadHLS(): void {
+    const video = this.videoElementRef.nativeElement;
+
+    if (!Hls.isSupported()) {
+      video.src = this.src;
+    } else {
+      const hls = new Hls();
+      hls.loadSource(this.src);
+      hls.attachMedia(video);
     }
   }
 }

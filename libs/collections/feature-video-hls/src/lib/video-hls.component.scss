@@ -1,0 +1,13 @@
+.video-hls {
+  width: 100%;
+  height: 100vh;
+
+  shared-video-player {
+    ::ng-deep {
+      video {
+        width: 100%;
+        height: 100vh;
+      }
+    }
+  }
+}
