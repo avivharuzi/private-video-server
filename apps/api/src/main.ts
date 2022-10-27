@@ -1,5 +1,8 @@
+import * as path from 'node:path';
+
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as compression from 'compression';
 import helmet from 'helmet';
@@ -8,7 +11,14 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 (async () => {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+  app.useStaticAssets(
+    path.join(process.env['API_MEDIA_DIRECTORY'] || '', 'hls'),
+    {
+      prefix: '/api/videos/hls',
+    }
+  );
 
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
