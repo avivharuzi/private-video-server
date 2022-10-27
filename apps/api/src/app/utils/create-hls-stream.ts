@@ -14,7 +14,7 @@ export const createHLSStream = (
   return new Promise((resolve, reject) => {
     const m3u8FileName = `${name}-master.m3u8`;
     const m3u8FilePath = path.join(targetDir, m3u8FileName);
-    const hlsSegmentFilename = path.join(targetDir, `${name}-_%03d.ts`);
+    const hlsSegmentFilename = path.join(targetDir, `${name}-part-%03d.ts`);
 
     ffmpeg()
       .input(inputFilePath)
