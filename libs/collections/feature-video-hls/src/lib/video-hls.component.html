@@ -1,9 +1,7 @@
-<div class="video-hls">
-  <ng-container *ngIf="videoHLS$ | async as videoHLS">
-    <shared-video-player
-      [isHLS]="true"
-      [src]="'/api/videos/hls/' + videoHLS.src"
-    ></shared-video-player>
-  </ng-container>
-  <shared-loader [isLoading]="isLoading"></shared-loader>
+<div *ngIf="videoHLS$ | async as videoHLS" class="video-hls">
+  <shared-video-player
+    [isHLS]="true"
+    [src]="'/api/videos/hls/' + videoHLS.src"
+  ></shared-video-player>
 </div>
+<shared-loader [isLoading]="isLoading"></shared-loader>

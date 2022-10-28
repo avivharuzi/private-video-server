@@ -38,12 +38,12 @@ export class VideoPlayerComponent implements AfterViewInit, OnDestroy {
   hls?: any;
 
   ngAfterViewInit(): void {
-    this.plyr = new Plyr(this.videoElementRef.nativeElement, {
-      iconUrl: '/assets/svg/plyr.svg',
-    });
-
     if (this.isHLS) {
       this.loadHLS();
+    } else {
+      this.plyr = new Plyr(this.videoElementRef.nativeElement, {
+        iconUrl: '/assets/svg/plyr.svg',
+      });
     }
   }
 

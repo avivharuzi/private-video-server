@@ -22,9 +22,7 @@ export const createHLSStream = (
       .outputOptions([
         '-c copy',
         '-sc_threshold 0',
-        '-g 48',
-        '-keyint_min 48',
-        '-hls_time 2',
+        '-hls_time 4',
         '-hls_playlist_type vod',
         `-hls_segment_filename ${hlsSegmentFilename}`,
       ])
