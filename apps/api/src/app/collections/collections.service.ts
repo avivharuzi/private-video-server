@@ -16,7 +16,11 @@ export class CollectionsService {
   ) {}
 
   findAll(): Promise<CollectionEntity[]> {
-    return this.collectionRepository.find();
+    return this.collectionRepository.find({
+      order: {
+        name: 'asc',
+      },
+    });
   }
 
   async findOne(id: string): Promise<CollectionEntity> {

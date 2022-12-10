@@ -84,7 +84,7 @@ export class VideoListComponent implements OnDestroy {
       return sortByFromStorage as VideoSortBy;
     }
 
-    return VideoSortBy.CreatedAtDesc;
+    return VideoSortBy.TitleAsc;
   }
 
   private listenToVideoListFilterFormValueChanges(): void {
