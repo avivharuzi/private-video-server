@@ -2,8 +2,7 @@
   "singleQuote": true,
   "importOrder": [
     "^node:(.*)$",
-    "^zone.js(.*)$",
-    "^@angular/platform-server(.*)$",
+    "^@nestjs/(.*)$",
     "^@angular/(.*)$",
     "^rxjs(.*)$",
     "<THIRD_PARTY_MODULES>",
@@ -42,5 +41,10 @@
     "$ANGULAR_OUTPUT",
     "$ANGULAR_TWO_WAY_BINDING"
   ],
-  "attributeSort": "ASC"
+  "attributeSort": "ASC",
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-organize-attributes",
+    "prettier-plugin-rational-order"
+  ]
 }

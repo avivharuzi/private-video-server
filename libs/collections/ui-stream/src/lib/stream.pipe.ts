@@ -18,7 +18,7 @@ export class StreamPipe implements PipeTransform {
   constructor(
     @Inject(CollectionsConfigInjectionToken)
     private readonly collectionsConfig: CollectionsConfig,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
   ) {}
 
   transform(value: string, type: StreamType): string {

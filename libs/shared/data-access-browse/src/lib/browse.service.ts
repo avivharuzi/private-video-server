@@ -18,12 +18,12 @@ export class BrowseService {
   constructor(
     @Inject(BrowseConfigConfigInjectionToken)
     private readonly browseConfig: BrowseConfig,
-    private readonly httpClient: HttpClient
+    private readonly httpClient: HttpClient,
   ) {}
 
   getAll(path = '/'): Observable<Browse> {
     return this.httpClient.get<Browse>(
-      `${this.baseAPIUrl}/${encodeURIComponent(path)}`
+      `${this.baseAPIUrl}/${encodeURIComponent(path)}`,
     );
   }
 }

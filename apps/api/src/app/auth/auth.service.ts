@@ -9,7 +9,7 @@ import { AuthDto } from './dto';
 export class AuthService {
   constructor(
     private readonly configService: ConfigService,
-    private readonly jwtService: JwtService
+    private readonly jwtService: JwtService,
   ) {}
 
   async login({ username, password }: AuthDto): Promise<AuthToken> {

@@ -6,12 +6,12 @@ describe('AccessTokenInterceptor', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
       providers: [AccessTokenInterceptor],
-    })
+    }),
   );
 
   it('should be created', () => {
     const interceptor: AccessTokenInterceptor = TestBed.inject(
-      AccessTokenInterceptor
+      AccessTokenInterceptor,
     );
     expect(interceptor).toBeTruthy();
   });

@@ -1,5 +1,6 @@
-import ffmpeg from 'fluent-ffmpeg';
 import * as os from 'node:os';
+
+import ffmpeg from 'fluent-ffmpeg';
 
 export const concatMultipleVideos = (
   inputFilePaths: string[],

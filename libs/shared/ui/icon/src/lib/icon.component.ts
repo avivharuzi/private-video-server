@@ -13,8 +13,8 @@ export class IconComponent {
     this.matIconRegistry.addSvgIcon(
       name,
       this.domSanitizer.bypassSecurityTrustResourceUrl(
-        `/assets/svg/${name}.svg`
-      )
+        `/assets/svg/${name}.svg`,
+      ),
     );
     this.#name = name;
   }
@@ -27,6 +27,6 @@ export class IconComponent {
 
   constructor(
     private domSanitizer: DomSanitizer,
-    private matIconRegistry: MatIconRegistry
+    private matIconRegistry: MatIconRegistry,
   ) {}
 }

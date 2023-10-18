@@ -2,6 +2,7 @@ import * as fs from 'node:fs';
 import * as stream from 'node:stream';
 
 import { BadRequestException, Injectable } from '@nestjs/common';
+
 import { Response } from 'express';
 
 import { StreamVideoOptions } from './stream-video-options';
@@ -25,7 +26,7 @@ export class StreamService {
   video(
     path: string,
     res: Response,
-    { fileSize, headers }: StreamVideoOptions
+    { fileSize, headers }: StreamVideoOptions,
   ) {
     const { range } = headers;
 

@@ -11,7 +11,7 @@ import { EnvironmentVariables } from '../environment-variables';
 @Injectable()
 export class StreamPathPipe implements PipeTransform {
   constructor(
-    private readonly configService: ConfigService<EnvironmentVariables>
+    private readonly configService: ConfigService<EnvironmentVariables>,
   ) {}
 
   transform(value: string, metadata: ArgumentMetadata) {

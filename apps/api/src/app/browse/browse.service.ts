@@ -1,11 +1,10 @@
 import * as fs from 'node:fs';
+import * as os from 'node:os';
 import * as path from 'node:path';
 
 import { Injectable } from '@nestjs/common';
 
 import { Browse } from '@private-video-server/shared/data-access-browse';
-
-import * as os from 'node:os';
 
 @Injectable()
 export class BrowseService {

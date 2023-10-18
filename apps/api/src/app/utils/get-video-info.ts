@@ -1,4 +1,5 @@
 import { Logger } from '@nestjs/common';
+
 import * as ffmpeg from 'fluent-ffmpeg';
 
 export interface VideoInfo {

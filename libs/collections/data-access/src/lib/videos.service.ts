@@ -19,7 +19,7 @@ export class VideosService {
   constructor(
     @Inject(CollectionsConfigInjectionToken)
     private readonly collectionsConfig: CollectionsConfig,
-    private readonly httpClient: HttpClient
+    private readonly httpClient: HttpClient,
   ) {}
 
   getAll(params: Partial<VideoQueryParams>): Observable<Video[]> {
@@ -42,7 +42,7 @@ export class VideosService {
 
     return this.httpClient.post<Video>(
       `${this.baseAPIUrl}/${id}/change-cover-thumbnail`,
-      formData
+      formData,
     );
   }
 
@@ -54,7 +54,7 @@ export class VideosService {
           return Object.entries(mediaInfoFormatted).map(
             ([name, detailsBefore]) => {
               const details: MediaInfoDetail[] = Object.entries(
-                detailsBefore
+                detailsBefore,
               ).map(([key, value]) => {
                 return {
                   key,
@@ -66,9 +66,9 @@ export class VideosService {
                 name,
                 details,
               };
-            }
+            },
           );
-        })
+        }),
       );
   }
 

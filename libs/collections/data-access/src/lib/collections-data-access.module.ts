@@ -8,7 +8,7 @@ import {
 @NgModule()
 export class CollectionsDataAccessModule {
   static forRoot(
-    config: CollectionsConfig
+    config: CollectionsConfig,
   ): ModuleWithProviders<CollectionsDataAccessModule> {
     return {
       ngModule: CollectionsDataAccessModule,

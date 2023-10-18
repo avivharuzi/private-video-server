@@ -30,12 +30,12 @@ export class VideoHlsComponent {
       this.router.navigate(['/']).then();
 
       throw error;
-    })
+    }),
   );
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private videosService: VideosService
+    private videosService: VideosService,
   ) {}
 }

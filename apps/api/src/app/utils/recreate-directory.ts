@@ -1,7 +1,7 @@
 import * as fs from 'node:fs';
 
 export const recreateDirectory = async (
-  targetDirectory: string
+  targetDirectory: string,
 ): Promise<void> => {
   let isExist = true;
 

@@ -22,8 +22,8 @@ import {
 } from '@private-video-server/collections/data-access';
 import { deepClone } from '@private-video-server/shared/util-helpers';
 
-import { VIDEO_LIST_SORT_BY_STORAGE_KEY } from './video-list-sort-by-storage-key';
 import { VideoListFilterFormValue } from './video-list-filter-form-value';
+import { VIDEO_LIST_SORT_BY_STORAGE_KEY } from './video-list-sort-by-storage-key';
 
 @Component({
   selector: 'collections-video-list',

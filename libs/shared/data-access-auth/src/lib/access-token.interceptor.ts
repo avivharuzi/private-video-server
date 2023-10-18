@@ -16,12 +16,12 @@ import { AuthService } from './auth.service';
 export class AccessTokenInterceptor implements HttpInterceptor {
   constructor(
     private readonly authService: AuthService,
-    private readonly router: Router
+    private readonly router: Router,
   ) {}
 
   intercept(
     request: HttpRequest<unknown>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
     const accessToken = this.authService.getAccessToken();
 
@@ -38,7 +38,7 @@ export class AccessTokenInterceptor implements HttpInterceptor {
         }
 
         throw error;
-      })
+      }),
     );
   }
 }

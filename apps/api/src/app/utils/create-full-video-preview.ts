@@ -30,13 +30,13 @@ export const createFullVideoPreview = async (
     numberOfParts,
     eachPartTimeInSeconds,
     directory,
-  }: CreateFullVideoPreviewOptions
+  }: CreateFullVideoPreviewOptions,
 ): Promise<CreateFullVideoPreviewOutput> => {
   const totalSeconds = Math.floor(videoInfo.duration); // 2000
   const minStartInSeconds = totalSeconds * (startPositionPercent / 100); // 100
   const maxEndInSeconds = totalSeconds * (endPositionPercent / 100); // 1900
   const eachFragmentInSeconds = Math.floor(
-    (maxEndInSeconds - minStartInSeconds) / (numberOfParts - 1)
+    (maxEndInSeconds - minStartInSeconds) / (numberOfParts - 1),
   ); // 180
   const fragments = Array(numberOfParts)
     .fill(null)
@@ -46,14 +46,14 @@ export const createFullVideoPreview = async (
     (fragmentInSeconds, index) => {
       const outputFilePath = path.join(
         directory,
-        `${generateUUID()}-${getFileNumber(index)}.${VideoExtension.MP4}`
+        `${generateUUID()}-${getFileNumber(index)}.${VideoExtension.MP4}`,
       );
 
       return createVideoPreview(inputFilePath, outputFilePath, {
         fragmentDurationInSeconds: eachPartTimeInSeconds,
         startTimeInSeconds: fragmentInSeconds,
       });
-    }
+    },
   );
 
   const filePaths = await Promise.all(createVideoPreviewPromises);

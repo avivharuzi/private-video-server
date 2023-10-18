@@ -47,7 +47,7 @@ export class NavbarComponent {
         searchTerm,
         limit: 20,
       });
-    })
+    }),
   );
 
   isSearchVideosVisible = false;
@@ -55,7 +55,7 @@ export class NavbarComponent {
   constructor(
     private readonly authService: AuthService,
     private readonly videosService: VideosService,
-    private readonly router: Router
+    private readonly router: Router,
   ) {}
 
   get searchInputElementValue(): string {

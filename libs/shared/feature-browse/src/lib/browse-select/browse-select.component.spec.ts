@@ -8,9 +8,8 @@ describe('BrowseSelectComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BrowseSelectComponent ]
-    })
-    .compileComponents();
+      declarations: [BrowseSelectComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

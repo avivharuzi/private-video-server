@@ -32,7 +32,7 @@ export class CollectionItemComponent {
   constructor(
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly collectionService: CollectionsService,
-    private readonly sharedUiToastrService: SharedUiToastrService
+    private readonly sharedUiToastrService: SharedUiToastrService,
   ) {}
 
   onRefresh(sharedActionMenu: ActionMenuComponent): void {
@@ -45,13 +45,13 @@ export class CollectionItemComponent {
       .pipe(
         tap((collection) => {
           this.sharedUiToastrService.showSuccessMessage(
-            `Collection "${collection.name}" was refreshed successfully`
+            `Collection "${collection.name}" was refreshed successfully`,
           );
         }),
         finalize(() => {
           this.isLoading = false;
           this.changeDetectorRef.detectChanges();
-        })
+        }),
       )
       .subscribe();
   }
@@ -66,7 +66,7 @@ export class CollectionItemComponent {
       .pipe(
         tap((collection) => {
           this.sharedUiToastrService.showSuccessMessage(
-            `Collection "${collection.name}" was deleted successfully`
+            `Collection "${collection.name}" was deleted successfully`,
           );
 
           this.collectionDeleted.emit();
@@ -74,7 +74,7 @@ export class CollectionItemComponent {
         finalize(() => {
           this.isLoading = false;
           this.changeDetectorRef.detectChanges();
-        })
+        }),
       )
       .subscribe();
   }

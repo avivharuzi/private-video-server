@@ -7,7 +7,7 @@ const routes: Routes = [
     pathMatch: 'full',
     loadChildren: () =>
       import('@private-video-server/collections/feature-list').then(
-        ({ CollectionsFeatureListModule }) => CollectionsFeatureListModule
+        ({ CollectionsFeatureListModule }) => CollectionsFeatureListModule,
       ),
   },
   {
@@ -23,7 +23,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('@private-video-server/collections/feature-search').then(
             ({ CollectionsFeatureSearchModule }) =>
-              CollectionsFeatureSearchModule
+              CollectionsFeatureSearchModule,
           ),
       },
     ],
@@ -32,7 +32,7 @@ const routes: Routes = [
     path: ':id',
     loadChildren: () =>
       import('@private-video-server/collections/feature-detail').then(
-        ({ CollectionsFeatureDetailModule }) => CollectionsFeatureDetailModule
+        ({ CollectionsFeatureDetailModule }) => CollectionsFeatureDetailModule,
       ),
   },
 ];

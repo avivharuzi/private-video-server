@@ -11,7 +11,7 @@ const routes: Routes = [
     pathMatch: 'full',
     loadChildren: () =>
       import('@private-video-server/auth/feature-login').then(
-        ({ AuthFeatureLoginModule }) => AuthFeatureLoginModule
+        ({ AuthFeatureLoginModule }) => AuthFeatureLoginModule,
       ),
   },
   {
@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('@private-video-server/collections/feature-video-hls').then(
         ({ CollectionsFeatureVideoHlsModule }) =>
-          CollectionsFeatureVideoHlsModule
+          CollectionsFeatureVideoHlsModule,
       ),
   },
   {
@@ -37,7 +37,7 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         loadChildren: () =>
           import('@private-video-server/collections/shell').then(
-            ({ CollectionsShellModule }) => CollectionsShellModule
+            ({ CollectionsShellModule }) => CollectionsShellModule,
           ),
       },
     ],

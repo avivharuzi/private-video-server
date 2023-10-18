@@ -8,7 +8,7 @@ import {
 @NgModule()
 export class SharedDataAccessBrowseModule {
   static forRoot(
-    config: BrowseConfig
+    config: BrowseConfig,
   ): ModuleWithProviders<SharedDataAccessBrowseModule> {
     return {
       ngModule: SharedDataAccessBrowseModule,

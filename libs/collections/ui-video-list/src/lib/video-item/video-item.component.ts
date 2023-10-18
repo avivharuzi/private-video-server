@@ -33,7 +33,7 @@ export class VideoItemComponent {
   constructor(
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly videosService: VideosService,
-    private readonly sharedUiToastrService: SharedUiToastrService
+    private readonly sharedUiToastrService: SharedUiToastrService,
   ) {}
 
   onFileChange(event: Event): void {
@@ -52,7 +52,7 @@ export class VideoItemComponent {
       .pipe(
         tap((updatedVideo) => {
           this.sharedUiToastrService.showSuccessMessage(
-            `Video "${updatedVideo.title}" was updated the cover thumbnail successfully`
+            `Video "${updatedVideo.title}" was updated the cover thumbnail successfully`,
           );
 
           this.video = updatedVideo;
@@ -60,7 +60,7 @@ export class VideoItemComponent {
         finalize(() => {
           this.isLoading = false;
           this.changeDetectorRef.detectChanges();
-        })
+        }),
       )
       .subscribe();
   }
@@ -75,7 +75,7 @@ export class VideoItemComponent {
       .pipe(
         tap((deleteVideo) => {
           this.sharedUiToastrService.showSuccessMessage(
-            `Video "${deleteVideo.title}" was deleted successfully`
+            `Video "${deleteVideo.title}" was deleted successfully`,
           );
 
           this.videoDeleted.emit();
@@ -83,7 +83,7 @@ export class VideoItemComponent {
         finalize(() => {
           this.isLoading = false;
           this.changeDetectorRef.detectChanges();
-        })
+        }),
       )
       .subscribe();
   }

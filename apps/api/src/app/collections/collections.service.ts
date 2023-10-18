@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+
 import { Repository } from 'typeorm';
 
 import { isFileExists } from '../utils';
@@ -12,7 +13,7 @@ export class CollectionsService {
   constructor(
     @InjectRepository(CollectionEntity)
     private readonly collectionRepository: Repository<CollectionEntity>,
-    private readonly videosService: VideosService
+    private readonly videosService: VideosService,
   ) {}
 
   findAll(): Promise<CollectionEntity[]> {
@@ -39,16 +40,15 @@ export class CollectionsService {
   }
 
   async create(
-    createCollectionDto: CreateCollectionDto
+    createCollectionDto: CreateCollectionDto,
   ): Promise<CollectionEntity> {
-    const collection = await this.collectionRepository.save(
-      createCollectionDto
-    );
+    const collection =
+      await this.collectionRepository.save(createCollectionDto);
 
     const { directories } = collection;
 
     const createVideosPromises = directories.map((directory) =>
-      this.videosService.createMany(collection, directory)
+      this.videosService.createMany(collection, directory),
     );
 
     await Promise.all(createVideosPromises);
@@ -62,15 +62,15 @@ export class CollectionsService {
     const { directories } = collection;
 
     const existingVideosFilesPaths = collection.videos.map(
-      (video) => video.filePath
+      (video) => video.filePath,
     );
 
     const createVideosPromises = directories.map((directory) =>
       this.videosService.createMany(
         collection,
         directory,
-        existingVideosFilesPaths
-      )
+        existingVideosFilesPaths,
+      ),
     );
 
     await Promise.all(createVideosPromises);
@@ -84,7 +84,7 @@ export class CollectionsService {
     const collection = await this.findOne(id);
 
     const deletePromises = collection.videos.map((video) =>
-      this.videosService.deleteOne(video.id)
+      this.videosService.deleteOne(video.id),
     );
 
     await Promise.all(deletePromises);

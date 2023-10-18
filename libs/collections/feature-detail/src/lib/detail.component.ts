@@ -14,12 +14,12 @@ import { CollectionsService } from '@private-video-server/collections/data-acces
 export class DetailComponent {
   collection$ = this.activatedRoute.paramMap.pipe(
     switchMap((paramMap) =>
-      this.collectionsService.getDetail(paramMap.get('id') || '')
-    )
+      this.collectionsService.getDetail(paramMap.get('id') || ''),
+    ),
   );
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
-    private readonly collectionsService: CollectionsService
+    private readonly collectionsService: CollectionsService,
   ) {}
 }

@@ -8,9 +8,8 @@ describe('ActionMenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ActionMenuComponent ]
-    })
-    .compileComponents();
+      declarations: [ActionMenuComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

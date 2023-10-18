@@ -25,7 +25,7 @@ export class BrowseComponent implements OnInit {
   path = '';
 
   private browseDataBehaviorSubject = new BehaviorSubject<BrowseData | null>(
-    null
+    null,
   );
 
   browseData$ = this.browseDataBehaviorSubject.asObservable();
@@ -65,7 +65,7 @@ export class BrowseComponent implements OnInit {
       currentRootDirectory = currentDirectory;
     } else if (isBack) {
       history = history.filter(
-        (historyItem) => historyItem !== currentDirectory
+        (historyItem) => historyItem !== currentDirectory,
       );
     } else {
       history = [...history, currentDirectory];

@@ -17,7 +17,7 @@ export class SharedUiToastrInterceptor implements HttpInterceptor {
 
   intercept(
     request: HttpRequest<unknown>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error) => {
@@ -27,7 +27,7 @@ export class SharedUiToastrInterceptor implements HttpInterceptor {
         }
 
         throw error;
-      })
+      }),
     );
   }
 }

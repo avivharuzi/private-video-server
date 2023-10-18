@@ -35,7 +35,7 @@ export class AuthService {
     @Inject(AuthConfigConfigInjectionToken)
     private readonly browseConfig: AuthConfig,
     private readonly httpClient: HttpClient,
-    private readonly router: Router
+    private readonly router: Router,
   ) {}
 
   init(): Observable<void> {
@@ -48,7 +48,7 @@ export class AuthService {
       }),
       map(() => {
         return;
-      })
+      }),
     );
   }
 
@@ -63,7 +63,7 @@ export class AuthService {
         tap((user) => {
           this.userSubject.next(user);
           this.router.navigate(['/']).then();
-        })
+        }),
       );
   }
 

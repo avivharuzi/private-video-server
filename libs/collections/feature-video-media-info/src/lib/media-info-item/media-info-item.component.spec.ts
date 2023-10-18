@@ -8,9 +8,8 @@ describe('MediaInfoItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MediaInfoItemComponent ]
-    })
-    .compileComponents();
+      declarations: [MediaInfoItemComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

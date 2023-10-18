@@ -36,7 +36,7 @@ export class VideosController {
 
   @Post(':id/change-cover-thumbnail')
   @UseInterceptors(
-    FileFieldsInterceptor([{ name: 'coverThumbnail', maxCount: 1 }])
+    FileFieldsInterceptor([{ name: 'coverThumbnail', maxCount: 1 }]),
   )
   changeCoverThumbnail(
     @Param('id') id: string,
@@ -45,7 +45,7 @@ export class VideosController {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       coverThumbnail?: Express.Multer.File[];
-    }
+    },
   ) {
     const coverThumbnail =
       files && files.coverThumbnail && files.coverThumbnail[0];

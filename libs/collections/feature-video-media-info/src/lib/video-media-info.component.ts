@@ -19,13 +19,13 @@ export class VideoMediaInfoComponent {
       this.collectionId = paramMap.get('id') || '';
 
       return this.videosService.getMediaInfo(paramMap.get('videoId') || '');
-    })
+    }),
   );
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly videosService: VideosService,
-    private readonly router: Router
+    private readonly router: Router,
   ) {}
 
   onModalClosed(): void {

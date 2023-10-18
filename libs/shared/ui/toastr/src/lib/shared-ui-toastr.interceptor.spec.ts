@@ -6,12 +6,12 @@ describe('SharedUiToastrInterceptor', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
       providers: [SharedUiToastrInterceptor],
-    })
+    }),
   );
 
   it('should be created', () => {
     const interceptor: SharedUiToastrInterceptor = TestBed.inject(
-      SharedUiToastrInterceptor
+      SharedUiToastrInterceptor,
     );
     expect(interceptor).toBeTruthy();
   });

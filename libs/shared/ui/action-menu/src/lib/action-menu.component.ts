@@ -37,12 +37,15 @@ export class ActionMenuComponent implements AfterContentInit, OnDestroy {
 
   private destroy = new Subject<void>();
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
+  constructor(
+    private elementRef: ElementRef,
+    private renderer: Renderer2,
+  ) {}
 
   @HostListener('document:click', ['$event']) click(event: MouseEvent) {
     if (
       !(this.elementRef.nativeElement as HTMLElement).contains(
-        event.target as HTMLElement
+        event.target as HTMLElement,
       )
     ) {
       this.close();

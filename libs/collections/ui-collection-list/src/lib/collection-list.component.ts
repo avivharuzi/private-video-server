@@ -13,7 +13,7 @@ export class CollectionListComponent {
 
   onCollectionDeleted(deletedCollection: Collection): void {
     this.collections = this.collections.filter(
-      (collection) => collection.id !== deletedCollection.id
+      (collection) => collection.id !== deletedCollection.id,
     );
   }
 }

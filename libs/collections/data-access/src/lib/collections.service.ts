@@ -19,7 +19,7 @@ export class CollectionsService {
   constructor(
     @Inject(CollectionsConfigInjectionToken)
     private readonly collectionsConfig: CollectionsConfig,
-    private readonly httpClient: HttpClient
+    private readonly httpClient: HttpClient,
   ) {}
 
   getAll(): Observable<Collection[]> {
@@ -37,7 +37,7 @@ export class CollectionsService {
   refresh(id: string): Observable<Collection> {
     return this.httpClient.put<Collection>(
       `${this.baseAPIUrl}/refresh/${id}`,
-      {}
+      {},
     );
   }
 

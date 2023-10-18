@@ -5,5 +5,5 @@ export interface AuthConfig {
 }
 
 export const AuthConfigConfigInjectionToken = new InjectionToken<AuthConfig>(
-  'auth-config'
+  'auth-config',
 );

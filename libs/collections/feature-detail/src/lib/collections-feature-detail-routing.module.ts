@@ -18,7 +18,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('@private-video-server/collections/feature-video-detail').then(
             ({ CollectionsFeatureVideoDetailModule }) =>
-              CollectionsFeatureVideoDetailModule
+              CollectionsFeatureVideoDetailModule,
           ),
       },
       {
@@ -28,7 +28,7 @@ const routes: Routes = [
             '@private-video-server/collections/feature-video-media-info'
           ).then(
             ({ CollectionsFeatureVideoMediaInfoModule }) =>
-              CollectionsFeatureVideoMediaInfoModule
+              CollectionsFeatureVideoMediaInfoModule,
           ),
       },
     ],

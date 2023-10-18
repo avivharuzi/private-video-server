@@ -21,11 +21,11 @@ export class SearchComponent {
       return this.videosService.getAll({
         searchTerm: this.searchTerm,
       });
-    })
+    }),
   );
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
-    private readonly videosService: VideosService
+    private readonly videosService: VideosService,
   ) {}
 }

@@ -8,7 +8,7 @@ import { AuthService } from './auth.service';
 @NgModule()
 export class SharedDataAccessAuthModule {
   static forRoot(
-    config: AuthConfig
+    config: AuthConfig,
   ): ModuleWithProviders<SharedDataAccessAuthModule> {
     return {
       ngModule: SharedDataAccessAuthModule,

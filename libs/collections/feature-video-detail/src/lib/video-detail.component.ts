@@ -35,7 +35,7 @@ export class VideoDetailComponent {
       return this.videosService
         .getDetail(paramMap.get('videoId') || '')
         .pipe(tap((video) => (this.video = video)));
-    })
+    }),
   );
 
   video?: Video;
@@ -52,7 +52,7 @@ export class VideoDetailComponent {
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly videosService: VideosService,
-    private readonly router: Router
+    private readonly router: Router,
   ) {}
 
   onModalClosed(): void {
@@ -86,7 +86,7 @@ export class VideoDetailComponent {
       0,
       0,
       canvas.width,
-      canvas.height
+      canvas.height,
     );
     const dataURI = canvas.toDataURL('image/jpg');
 
