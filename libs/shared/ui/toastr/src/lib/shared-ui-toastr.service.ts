@@ -35,7 +35,7 @@ export class SharedUiToastrService {
     private readonly rendererFactory: RendererFactory2,
     private readonly componentFactoryResolver: ComponentFactoryResolver,
     private readonly appRef: ApplicationRef,
-    private readonly injector: Injector
+    private readonly injector: Injector,
   ) {
     this.renderer = this.rendererFactory.createRenderer(null, null);
     this.createToastrContainerComponentRef();
@@ -43,7 +43,7 @@ export class SharedUiToastrService {
 
   showSuccessMessage(
     content: string,
-    options: Partial<SharedUiToastrMessageOptions> = {}
+    options: Partial<SharedUiToastrMessageOptions> = {},
   ): string {
     return this.showMessage({
       color: 'success',
@@ -54,7 +54,7 @@ export class SharedUiToastrService {
 
   showErrorMessage(
     content: string,
-    options: Partial<SharedUiToastrMessageOptions> = {}
+    options: Partial<SharedUiToastrMessageOptions> = {},
   ): string {
     return this.showMessage({
       color: 'error',
@@ -86,7 +86,7 @@ export class SharedUiToastrService {
 
     this.attachComponent(
       componentRef,
-      toastrContainerComponentRef.instance.items.nativeElement
+      toastrContainerComponentRef.instance.items.nativeElement,
     );
 
     this.toasts.set(id, componentRef);
@@ -114,7 +114,7 @@ export class SharedUiToastrService {
 
   private createToastrContainerComponentRef(): void {
     this.toastrContainerComponentRef = this.createComponent(
-      ToastrContainerComponent
+      ToastrContainerComponent,
     );
 
     this.attachComponent(this.toastrContainerComponentRef, this.document.body);
@@ -122,13 +122,15 @@ export class SharedUiToastrService {
 
   private createComponent<T>(
     component: Type<T>,
-    componentProps?: T
+    componentProps?: T,
   ): ComponentRef<T> {
     const componentRef = this.componentFactoryResolver
       .resolveComponentFactory(component)
       .create(this.injector);
 
     if (componentProps && typeof componentRef.instance === 'object') {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       Object.assign(componentRef.instance, componentProps);
     }
 
@@ -137,7 +139,7 @@ export class SharedUiToastrService {
 
   private attachComponent<T>(
     componentRef: ComponentRef<T>,
-    appendTo: Element
+    appendTo: Element,
   ): void {
     this.appRef.attachView(componentRef.hostView);
 

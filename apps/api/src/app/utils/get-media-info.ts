@@ -1,7 +1,7 @@
 import * as fs from 'node:fs';
 
-import * as MediaInfoFactory from 'mediainfo.js';
-import { FormatType, MediaInfo, ReadChunkFunc, Result } from 'mediainfo.js';
+import MediaInfoFactory from 'mediainfo.js';
+import { FormatType, MediaInfo, ReadChunkFunc } from 'mediainfo.js';
 
 export interface MediaInfoOptions {
   coverData: boolean;
@@ -21,7 +21,7 @@ export type MediaInfoFormatted = Record<string, Record<string, string>>;
 
 export const getMediaInfo = async (
   inputFilePath: string,
-  options: Partial<MediaInfoOptions> = {}
+  options: Partial<MediaInfoOptions> = {},
 ) => {
   const mergedOptions: MediaInfoOptions = {
     ...getDefaultMediaInfoOptions(),
@@ -31,7 +31,7 @@ export const getMediaInfo = async (
   let fileHandle: fs.promises.FileHandle | undefined;
   let fileSize: number;
   let mediainfo: MediaInfo | undefined;
-  let result: Result;
+  let result: string;
 
   const readChunk: ReadChunkFunc = async (size, offset) => {
     const buffer = new Uint8Array(size);
@@ -47,8 +47,8 @@ export const getMediaInfo = async (
     mediainfo = await MediaInfoFactory(mergedOptions);
     result = (await mediainfo?.analyzeData(
       () => fileSize,
-      readChunk
-    )) as Result;
+      readChunk,
+    )) as string;
   } finally {
     fileHandle && (await fileHandle.close());
     mediainfo && mediainfo.close();
@@ -58,11 +58,11 @@ export const getMediaInfo = async (
 };
 
 export const getMediaInfoFormatted = async (
-  inputFilePath: string
+  inputFilePath: string,
 ): Promise<MediaInfoFormatted> => {
-  const text = (await getMediaInfo(inputFilePath, {
+  const text = await getMediaInfo(inputFilePath, {
     format: 'text',
-  })) as string;
+  });
 
   let hasToCheckGroup = true;
   let lastGroupName = '';

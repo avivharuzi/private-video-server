@@ -23,6 +23,7 @@ import {
 import { deepClone } from '@private-video-server/shared/util-helpers';
 
 import { VIDEO_LIST_SORT_BY_STORAGE_KEY } from './video-list-sort-by-storage-key';
+import { VideoListFilterFormValue } from './video-list-filter-form-value';
 
 @Component({
   selector: 'collections-video-list',
@@ -57,7 +58,7 @@ export class VideoListComponent implements OnDestroy {
 
   constructor(
     private readonly changeDetectorRef: ChangeDetectorRef,
-    private readonly formBuilder: FormBuilder
+    private readonly formBuilder: FormBuilder,
   ) {
     this.listenToVideoListFilterFormValueChanges();
   }
@@ -68,13 +69,13 @@ export class VideoListComponent implements OnDestroy {
 
   onVideoDeleted(deletedVideo: Video): void {
     this.videos = this.sourceVideos.filter(
-      (video) => video.id !== deletedVideo.id
+      (video) => video.id !== deletedVideo.id,
     );
   }
 
   private getVideoListSortByInitValue(): VideoSortBy {
     const sortByFromStorage = localStorage.getItem(
-      VIDEO_LIST_SORT_BY_STORAGE_KEY
+      VIDEO_LIST_SORT_BY_STORAGE_KEY,
     );
 
     if (
@@ -95,13 +96,14 @@ export class VideoListComponent implements OnDestroy {
         distinctUntilChanged(),
         tap(() => {
           this.updateVideosByFilter();
-        })
+        }),
       )
       .subscribe();
   }
 
   private updateVideosByFilter(): void {
-    const { searchTerm, sortBy } = this.videoListFilterForm.value;
+    const { searchTerm, sortBy } = this.videoListFilterForm
+      .value as VideoListFilterFormValue;
     localStorage.setItem(VIDEO_LIST_SORT_BY_STORAGE_KEY, sortBy);
     const searchTermTrim = searchTerm.trim();
 
@@ -112,7 +114,7 @@ export class VideoListComponent implements OnDestroy {
     } else {
       videos = this.sourceVideos.filter(
         (video) =>
-          video.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
+          video.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1,
       );
     }
 
@@ -120,14 +122,14 @@ export class VideoListComponent implements OnDestroy {
       case VideoSortBy.CreatedAtAsc:
         videos = videos.sort(
           (a, b) =>
-            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
         );
 
         break;
       case VideoSortBy.CreatedAtDesc:
         videos = videos.sort(
           (a, b) =>
-            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
         );
 
         break;

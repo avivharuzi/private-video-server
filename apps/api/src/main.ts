@@ -4,7 +4,7 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import * as compression from 'compression';
+import compression from 'compression';
 import helmet from 'helmet';
 
 import { AppModule } from './app/app.module';
@@ -17,7 +17,7 @@ import { environment } from './environments/environment';
     path.join(process.env['API_MEDIA_DIRECTORY'] || '', 'hls'),
     {
       prefix: '/api/videos/hls',
-    }
+    },
   );
 
   const globalPrefix = 'api';
@@ -25,13 +25,13 @@ import { environment } from './environments/environment';
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
-    })
+    }),
   );
 
   app.use(
     helmet({
       contentSecurityPolicy: false,
-    })
+    }),
   );
   app.use(compression());
 
@@ -49,6 +49,6 @@ import { environment } from './environments/environment';
   await app.listen(port);
 
   Logger.log(
-    `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
+    `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`,
   );
 })();

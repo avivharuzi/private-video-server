@@ -1,6 +1,6 @@
 import * as path from 'node:path';
 
-import * as ffmpeg from 'fluent-ffmpeg';
+import ffmpeg from 'fluent-ffmpeg';
 
 import { generateUUID } from './generate-uuid';
 import { getFileNumber } from './get-file-number';
@@ -19,14 +19,14 @@ export const takeScreenshots = async (
     directory,
     startPositionPercent,
     endPositionPercent,
-  }: TakeScreenshotsOptions
+  }: TakeScreenshotsOptions,
 ): Promise<string[]> => {
   const timestamps: string[] = [];
   if (count < 2) {
     timestamps.push(`${startPositionPercent}%`);
   } else {
     const addPercent = Math.floor(
-      (endPositionPercent - startPositionPercent) / (count - 1)
+      (endPositionPercent - startPositionPercent) / (count - 1),
     );
 
     let i = 0;
@@ -55,7 +55,7 @@ export interface TakeScreenshotOptions {
 
 export const takeScreenshot = (
   file: string,
-  { timestamp, directory, outputFileName }: TakeScreenshotOptions
+  { timestamp, directory, outputFileName }: TakeScreenshotOptions,
 ): Promise<string> => {
   return new Promise((resolve, reject) => {
     ffmpeg(file)

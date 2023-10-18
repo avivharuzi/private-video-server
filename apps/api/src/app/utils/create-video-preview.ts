@@ -1,4 +1,4 @@
-import * as ffmpeg from 'fluent-ffmpeg';
+import ffmpeg from 'fluent-ffmpeg';
 
 export interface CreateVideoPreviewOptions {
   startTimeInSeconds: number;
@@ -8,7 +8,7 @@ export interface CreateVideoPreviewOptions {
 export const createVideoPreview = async (
   inputFilePath: string,
   outputFilePath: string,
-  { startTimeInSeconds, fragmentDurationInSeconds }: CreateVideoPreviewOptions
+  { startTimeInSeconds, fragmentDurationInSeconds }: CreateVideoPreviewOptions,
 ): Promise<string> => {
   return new Promise((resolve, reject) => {
     return ffmpeg()

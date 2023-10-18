@@ -1,7 +1,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
-import * as ffmpeg from 'fluent-ffmpeg';
+import ffmpeg from 'fluent-ffmpeg';
 
 import { generateUUID } from './generate-uuid';
 
@@ -14,7 +14,7 @@ export interface AddCoverImageToVideoWithBufferOptions {
 export const addCoverImageToVideo = (
   inputFilePath: string,
   outputFilePath: string,
-  coverImageFilePath: string
+  coverImageFilePath: string,
 ) => {
   return new Promise((resolve, reject) => {
     ffmpeg(inputFilePath)
@@ -37,13 +37,13 @@ export const addCoverImageToVideoWithBuffer = async (
     coverImage,
     coverImageFileName,
     coverImageDirectory,
-  }: AddCoverImageToVideoWithBufferOptions
+  }: AddCoverImageToVideoWithBufferOptions,
 ): Promise<void> => {
   const inputFilePathParse = path.parse(inputFilePath);
 
   const outputFilePath = path.join(
     inputFilePathParse.dir,
-    `${generateUUID()}-temp-${inputFilePathParse.base}`
+    `${generateUUID()}-temp-${inputFilePathParse.base}`,
   );
 
   let coverImageFilePath: string;
@@ -52,7 +52,7 @@ export const addCoverImageToVideoWithBuffer = async (
   } else {
     coverImageFilePath = path.join(
       coverImageDirectory,
-      `${generateUUID()}-temp-${coverImageFileName}`
+      `${generateUUID()}-temp-${coverImageFileName}`,
     );
     await fs.promises.writeFile(coverImageFilePath, coverImage);
   }

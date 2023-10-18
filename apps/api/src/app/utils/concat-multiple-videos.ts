@@ -1,8 +1,9 @@
-import * as ffmpeg from 'fluent-ffmpeg';
+import ffmpeg from 'fluent-ffmpeg';
+import * as os from 'node:os';
 
 export const concatMultipleVideos = (
   inputFilePaths: string[],
-  outputFilePath: string
+  outputFilePath: string,
 ): Promise<void> => {
   return new Promise((resolve, reject) => {
     if (inputFilePaths.length === 0) {
@@ -21,6 +22,9 @@ export const concatMultipleVideos = (
       });
     }
 
-    command.on('error', reject).on('end', resolve).mergeToFile(outputFilePath);
+    command
+      .on('error', reject)
+      .on('end', resolve)
+      .mergeToFile(outputFilePath, os.tmpdir());
   });
 };

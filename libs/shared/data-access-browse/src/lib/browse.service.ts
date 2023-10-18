@@ -21,7 +21,7 @@ export class BrowseService {
     private readonly httpClient: HttpClient
   ) {}
 
-  getAll(path: string = '/'): Observable<Browse> {
+  getAll(path = '/'): Observable<Browse> {
     return this.httpClient.get<Browse>(
       `${this.baseAPIUrl}/${encodeURIComponent(path)}`
     );

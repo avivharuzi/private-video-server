@@ -1,12 +1,12 @@
 import * as path from 'node:path';
 
-import * as ffmpeg from 'fluent-ffmpeg';
+import ffmpeg from 'fluent-ffmpeg';
 
 import { generateUUID } from './generate-uuid';
 
 export const saveVideoCoverImage = (
   inputFilePath: string,
-  directory: string
+  directory: string,
 ): Promise<string | null> => {
   return new Promise((resolve) => {
     const command = ffmpeg(inputFilePath);
@@ -31,7 +31,7 @@ export const saveVideoCoverImage = (
 
       const outputFilePath = path.join(
         directory,
-        `${generateUUID()}-cover.jpg`
+        `${generateUUID()}-cover.jpg`,
       );
 
       command

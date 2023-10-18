@@ -1,8 +1,8 @@
-import * as sharp from 'sharp';
+import sharp from 'sharp';
 
 export const shrinkImage = async (
   source: string | Buffer,
-  outputFilePath: string
+  outputFilePath: string,
 ) => {
   return sharp(source)
     .jpeg({

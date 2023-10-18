@@ -4,10 +4,12 @@ import * as path from 'node:path';
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
-import * as del from 'del';
-import * as fastGlob from 'fast-glob';
-import * as mkdirp from 'mkdirp';
+import del from 'del';
+import fastGlob from 'fast-glob';
+import { mkdirp } from 'mkdirp';
 import { Repository } from 'typeorm';
+
+import * as os from 'node:os';
 
 import {
   VideoHLS,
@@ -38,7 +40,7 @@ export class VideosService {
   constructor(
     @InjectRepository(VideoEntity)
     private readonly videoRepository: Repository<VideoEntity>,
-    private readonly configService: ConfigService<EnvironmentVariables>
+    private readonly configService: ConfigService<EnvironmentVariables>,
   ) {}
 
   async findAll({
@@ -57,7 +59,7 @@ export class VideosService {
 
     queryBuilder = queryBuilder.leftJoinAndSelect(
       'videos.collection',
-      'collection'
+      'collection',
     );
 
     if (limit && !isNaN(limit)) {
@@ -84,7 +86,7 @@ export class VideosService {
   async createMany(
     collection: CollectionEntity,
     directory: string,
-    existingFilesPaths: string[] = []
+    existingFilesPaths: string[] = [],
   ): Promise<VideoEntity[]> {
     const filesPaths = await this.getFilesPaths(directory);
 
@@ -105,7 +107,7 @@ export class VideosService {
 
   async createOne(
     collection: CollectionEntity,
-    filePath: string
+    filePath: string,
   ): Promise<VideoEntity> {
     const fileStat = path.parse(filePath);
     const videoInfo = await getVideoInfo(filePath);
@@ -121,7 +123,7 @@ export class VideosService {
 
     const mediaDirectory = path.join(
       this.configService.get('API_MEDIA_DIRECTORY') || '',
-      video.id
+      video.id,
     );
     const thumbnailsDirectory = path.join(mediaDirectory, 'thumbnails');
     const previewsDirectory = path.join(mediaDirectory, 'previews');
@@ -196,7 +198,7 @@ export class VideosService {
     id: string,
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    coverThumbnail: Express.Multer.File
+    coverThumbnail: Express.Multer.File,
   ): Promise<VideoEntity> {
     const video = await this.findOne(id);
 
@@ -208,7 +210,7 @@ export class VideosService {
     try {
       const coverImageFilePath = path.join(
         thumbnailsDirectory,
-        `${generateUUID()}-cover.jpg`
+        `${generateUUID()}-cover.jpg`,
       );
 
       await shrinkImage(coverThumbnail.buffer, coverImageFilePath);
@@ -229,7 +231,7 @@ export class VideosService {
     id: string,
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    coverThumbnail: Express.Multer.File
+    coverThumbnail: Express.Multer.File,
   ): Promise<VideoEntity> {
     const video = await this.findOne(id);
 
@@ -247,7 +249,7 @@ export class VideosService {
     try {
       newCoverThumbnail = await saveVideoCoverImage(
         videoFilePath,
-        thumbnailsDirectory
+        thumbnailsDirectory,
       );
     } catch (error) {
       Logger.error(error, `coverThumbnail, ${videoFilePath}`);
@@ -270,6 +272,10 @@ export class VideosService {
     const patterns: string[] = [];
 
     for (const extension of VIDEO_EXTENSIONS) {
+      if (os.platform() === 'win32') {
+        directory = directory.replace(/\\/g, '/');
+      }
+
       patterns.push(`${directory}/**/*${extension}`);
     }
 
@@ -281,7 +287,7 @@ export class VideosService {
 
     const hlsDirectory = path.join(
       this.configService.get('API_MEDIA_DIRECTORY') || '',
-      'hls'
+      'hls',
     );
 
     await recreateDirectory(hlsDirectory);
@@ -298,7 +304,7 @@ export class VideosService {
 
   private async updateOldCoverThumbnailWithNewOne(
     video: VideoEntity,
-    newCoverThumbnail: string
+    newCoverThumbnail: string,
   ): Promise<void> {
     const oldCoverThumbnail = video.coverThumbnail;
 

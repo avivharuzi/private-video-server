@@ -5,9 +5,15 @@ import { Injectable } from '@nestjs/common';
 
 import { Browse } from '@private-video-server/shared/data-access-browse';
 
+import * as os from 'node:os';
+
 @Injectable()
 export class BrowseService {
   async findAll(startPath = '/', includingFiles = true): Promise<Browse> {
+    if (startPath === '/' && os.platform() === 'win32') {
+      startPath = `${process.cwd().split(path.sep)[0]}//`;
+    }
+
     const browse: Browse = {
       size: 0,
       directories: [],
@@ -15,7 +21,7 @@ export class BrowseService {
     };
 
     const directories = await fs.promises.readdir(
-      path.join(decodeURIComponent(startPath))
+      path.join(decodeURIComponent(startPath)),
     );
 
     for (const directory of directories) {

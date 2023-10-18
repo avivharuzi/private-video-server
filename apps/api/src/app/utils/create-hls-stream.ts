@@ -1,6 +1,6 @@
 import * as path from 'node:path';
 
-import * as ffmpeg from 'fluent-ffmpeg';
+import ffmpeg from 'fluent-ffmpeg';
 
 export interface CreateHLSStreamOptions {
   name: string;
@@ -9,7 +9,7 @@ export interface CreateHLSStreamOptions {
 
 export const createHLSStream = (
   inputFilePath: string,
-  { name, targetDir }: CreateHLSStreamOptions
+  { name, targetDir }: CreateHLSStreamOptions,
 ): Promise<string> => {
   return new Promise((resolve, reject) => {
     const m3u8FileName = `${name}-master.m3u8`;

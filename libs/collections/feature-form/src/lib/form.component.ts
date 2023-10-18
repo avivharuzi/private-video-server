@@ -5,7 +5,7 @@ import {
   EventEmitter,
   Output,
 } from '@angular/core';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormArray, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { finalize, tap } from 'rxjs';
@@ -13,6 +13,7 @@ import { finalize, tap } from 'rxjs';
 import {
   Collection,
   CollectionsService,
+  CreateCollection,
 } from '@private-video-server/collections/data-access';
 import { SharedUiToastrService } from '@private-video-server/shared/ui/toastr';
 
@@ -41,9 +42,9 @@ export class FormComponent {
   constructor(
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly collectionService: CollectionsService,
-    private readonly formBuilder: FormBuilder,
+    private readonly formBuilder: NonNullableFormBuilder,
     private readonly router: Router,
-    private readonly sharedUiToastrService: SharedUiToastrService
+    private readonly sharedUiToastrService: SharedUiToastrService,
   ) {}
 
   get directories(): FormArray {
@@ -88,11 +89,11 @@ export class FormComponent {
     this.isLoading = true;
 
     this.collectionService
-      .create(this.collectionForm.value)
+      .create(this.collectionForm.value as CreateCollection)
       .pipe(
         tap((collection) => {
           this.sharedUiToastrService.showSuccessMessage(
-            `Collection "${collection.name}" was created successfully`
+            `Collection "${collection.name}" was created successfully`,
           );
 
           this.router.navigate(['/collections', collection.id]).then(() => {
@@ -102,7 +103,7 @@ export class FormComponent {
         finalize(() => {
           this.isLoading = false;
           this.changeDetectorRef.detectChanges();
-        })
+        }),
       )
       .subscribe();
   }

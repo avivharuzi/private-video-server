@@ -3,11 +3,14 @@ import {
   ChangeDetectorRef,
   Component,
 } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 
 import { finalize } from 'rxjs';
 
-import { AuthService } from '@private-video-server/shared/data-access-auth';
+import {
+  AuthService,
+  Login,
+} from '@private-video-server/shared/data-access-auth';
 
 @Component({
   selector: 'auth-login',
@@ -26,7 +29,7 @@ export class LoginComponent {
   constructor(
     private readonly authService: AuthService,
     private readonly changeDetectorRef: ChangeDetectorRef,
-    private readonly formBuilder: FormBuilder
+    private readonly formBuilder: NonNullableFormBuilder,
   ) {}
 
   onSubmit(): void {
@@ -37,12 +40,12 @@ export class LoginComponent {
     this.isLoading = true;
 
     this.authService
-      .login(this.loginForm.value)
+      .login(this.loginForm.value as Login)
       .pipe(
         finalize(() => {
           this.isLoading = false;
           this.changeDetectorRef.detectChanges();
-        })
+        }),
       )
       .subscribe();
   }
