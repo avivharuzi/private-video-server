@@ -26,7 +26,7 @@ import { VideosModule } from './videos';
       autoLoadEntities: true,
     }),
     ServeStaticModule.forRoot({
-      rootPath: path.join(__dirname, '..', 'web', 'browser'),
+      rootPath: path.join(__dirname, '..', 'web'),
       exclude: ['/api*'],
     }),
     AuthModule,

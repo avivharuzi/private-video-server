@@ -19,7 +19,7 @@ import { NavbarModule } from './navbar/navbar.module';
   declarations: [AppComponent, MainLayoutComponent],
   imports: [
     AppRoutingModule,
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
